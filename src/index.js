@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { getConfig } from "./config";
 import { Auth0Provider } from "@auth0/auth0-react";
 import history from "./utils/history";
+import { BrowserRouter } from 'react-router-dom';
+
 
 const onRedirectCallback = (appState) => {
   history.push(
@@ -32,8 +34,8 @@ root.render(
     <Auth0Provider
       {...providerConfig}
     >
-      <App />
-    </Auth0Provider>,
+      <BrowserRouter><App /></BrowserRouter>
+    </Auth0Provider>
   </React.StrictMode>
 );
 
