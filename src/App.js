@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
 import Home from './components/Home';
+import Header from './components/Header';
 
 
 
 function App() {
   return (
     <div className="App">
-        <NavBar />
+        <Header />
         <Home />
     </div>
   )

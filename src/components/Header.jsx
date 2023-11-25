@@ -9,10 +9,10 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useAuth0 } from "@auth0/auth0-react";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
-
-const NavBar = () => {
+const Header = () => {
 
   const { logout } = useAuth0();
 
@@ -23,16 +23,17 @@ const NavBar = () => {
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
+            color="black"
             aria-label="menu"
             sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1,color:"black" }}>
+            Fabio's Store
           </Typography>
-          <Button color="inherit"
+          <ShoppingCartIcon color="black"/>
+          <Button color="secondary"
             onClick={() =>
               logout({ logoutParams: { returnTo: window.location.origin } })
             }
@@ -46,4 +47,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Header;
