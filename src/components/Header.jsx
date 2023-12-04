@@ -12,6 +12,19 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { AccountCircle } from "@mui/icons-material";
 import { Menu, MenuItem } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { teal } from '@mui/material/colors';
+import {createTheme} from '@mui/material/styles';
+
+
+
+const theme = createTheme({
+  palette:{
+    primary:{
+      main:'#171616'
+    }
+  }
+})
+
 
 const Header = () => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
@@ -49,7 +62,7 @@ const Header = () => {
           >
             Fabio's Store
           </Typography>
-          <ShoppingCartIcon color="black" />
+          <ShoppingCartIcon />
           {isAuthenticated ? (
             <div>
               <IconButton
@@ -58,7 +71,7 @@ const Header = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="inherit"
+                color="black"
               >
                 <AccountCircle />
               </IconButton>

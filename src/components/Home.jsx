@@ -1,16 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import Product from './Product';
 
 
 
-const Home = () => {
+const Home = ({results}) => {
     return (
         <div>
-            <p>home</p>
+            <p>Products</p>
+            {results.products.map(result =>{
+                return(
+                    <Product product={result}/>
+                )
+            })}
+            
         </div>
     )
-    //create nav using material ui, put it on the home page and setup reat router.
-    // after that try to creat a login butoon using auth0 and put it on the right of nav bar.
+
+    
 }
 
 
