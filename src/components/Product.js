@@ -1,4 +1,5 @@
 import React from 'react';
+import Typography from '@mui/material/Typography'
 
 //display some products
 //use map or for loop
@@ -7,7 +8,7 @@ const Product = ({product}) => {
 
     return(
         <div>
-            <p>{product.title}</p>
+            <Typography variant="h1" color="initial">{product.title}</Typography>
         </div>
     )
 }
