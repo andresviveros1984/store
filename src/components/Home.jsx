@@ -7,7 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 const Home = ({ results }) => {
   return (
-    <Container>
+    <Container sx={{bgcolor: "red",display: "flex", flexDirection: "row"}}>
       {results.products ? (
         <Box>
           <p>Products</p>

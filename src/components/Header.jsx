@@ -17,14 +17,6 @@ import {createTheme} from '@mui/material/styles';
 
 
 
-const theme = createTheme({
-  palette:{
-    primary:{
-      main:'#171616'
-    }
-  }
-})
-
 
 const Header = () => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
@@ -43,13 +35,13 @@ const Header = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1,backgroundColor:"red" }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
-            color="black"
+            color="secondary"
             aria-label="menu"
             sx={{ mr: 2 }}
           >
@@ -58,7 +50,7 @@ const Header = () => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, color: "black" }}
+            sx={{ flexGrow: 1, color: "secondary" }}
           >
             Fabio's Store
           </Typography>
@@ -71,7 +63,7 @@ const Header = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="black"
+                color="secondary"
               >
                 <AccountCircle />
               </IconButton>

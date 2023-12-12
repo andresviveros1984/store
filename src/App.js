@@ -4,9 +4,19 @@ import Home from './components/Home';
 import Header from './components/Header';
 import Cart from './components/Cart.js'
 import User from './components/User';
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
-
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#09090A"
+    },
+    secondary:{
+      main:"#F6F6F6"
+    }
+  }
+});
 
 
 function App() {
@@ -21,22 +31,22 @@ function App() {
   function fetchAllProducts() {
     fetch('https://dummyjson.com/products')
       .then(res => res.json())
-      .then(response=>setResults(response));
+      .then(response => setResults(response));
   }
 
 
   return (
-    <div className="App">
-      {console.log(results)}
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home results={results} />} />
-        <Route path='/user' element={<User />} />
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home results={results} />} />
+          <Route path='/user' element={<User />} />
 
-        {/* <Cart /> */}
-      </Routes>
-
-    </div>
+          {/* <Cart /> */}
+        </Routes>
+      </div>
+    </ThemeProvider>
   )
 };
 
