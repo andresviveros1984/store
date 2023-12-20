@@ -14,15 +14,15 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 //display categories as a menu option, side bar on burger menu
 const Product = ({ product }) => {
   return (
-    <Card sx={{ maxWidth: "300px" }}>
-      <CardMedia component="img" title="" image={product.images[0]} />
-      <CardContent>
-        <Typography variant="inherit" color="initial">
+    <Card sx={{ width: "15rem", height:"20rem" , margin:2}}>
+      <CardMedia component="img" title="" image={product.thumbnail} width="8rem" height="150px"/>
+      <CardContent sx={{display: "flex", flexDirection: "column", justifyContent: "space-around",height: "5rem"}}>
+        <Typography variant="h6" color="initial">
           {product.title}
         </Typography>
-        <Typography variant="inherit" color="initial">
+        {/* <Typography variant="inherit" color="initial">
           {product.description}
-        </Typography>
+        </Typography> */}
         <Typography variant="inherit" color="initial">
           $ {product.price}
         </Typography>

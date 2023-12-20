@@ -24,8 +24,11 @@ function App() {
   const [results, setResults] = useState([]);
   const url = 'https://dummyjson.com/products';
 
+  const [categories,setCategories] = useState([]);
+
   useEffect(() => {
     fetchAllProducts();
+    getCategories();
   }, [])
 
   function fetchAllProducts() {
@@ -34,11 +37,18 @@ function App() {
       .then(response => setResults(response));
   }
 
+  function getCategories() {
+    fetch('https://dummyjson.com/products/categories')
+    .then(res => res.json())
+    .then(response => setCategories(response) )
+  }
+
 
   return (
     <ThemeProvider theme={theme}>
+      {/* {console.log(results)} */}
       <div className="App">
-        <Header />
+        <Header categories={categories}/>
         <Routes>
           <Route path='/' element={<Home results={results} />} />
           <Route path='/user' element={<User />} />

@@ -12,30 +12,38 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { AccountCircle } from "@mui/icons-material";
 import { Menu, MenuItem } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { teal } from '@mui/material/colors';
-import {createTheme} from '@mui/material/styles';
+import { teal } from "@mui/material/colors";
+import { createTheme } from "@mui/material/styles";
 
-
-
-
-const Header = () => {
+const Header = ({ categories }) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const open = Boolean(anchorEl);
+  
+  const [anEl, setAnEl] = React.useState(null);
+  const openBurger = Boolean(anEl);
   const navigate = useNavigate();
-
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log(event)
+    console.log(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  const handleClick = (event) => {
+    setAnEl(event.currentTarget);
+    console.log("burger clicked")
+  };
+
+  const handleBurgerClose = () => {
+    setAnEl(null);
+  };
+
   return (
-    <Box sx={{ flexGrow: 1,backgroundColor:"red" }}>
+    <Box sx={{ flexGrow: 1, backgroundColor: "red" }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -44,9 +52,30 @@ const Header = () => {
             color="secondary"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={handleClick}
           >
             <MenuIcon />
           </IconButton>
+          <Menu
+            id="long-menu"
+            MenuListProps={{
+              "aria-labelledby": "long-button",
+            }}
+            anEl={anEl}
+            open={openBurger}
+            onClose={handleBurgerClose}
+            // onClick={handleBurgerClose}
+          >
+            {categories.map((category) => (
+              <MenuItem
+                key={category}
+                selected={category === category}
+                onClick={()=>console.log(category)}
+              >
+                {category}
+              </MenuItem>
+            ))}
+          </Menu>
           <Typography
             variant="h6"
             component="div"
@@ -82,11 +111,23 @@ const Header = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={() =>{
-                    navigate("/user")
-                    handleClose()
-                } }>Profile</MenuItem>
-                <MenuItem onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    navigate("/user");
+                    handleClose();
+                  }}
+                >
+                  Profile
+                </MenuItem>
+                <MenuItem
+                  onClick={() =>
+                    logout({
+                      logoutParams: { returnTo: window.location.origin },
+                    })
+                  }
+                >
+                  Log Out
+                </MenuItem>
               </Menu>
             </div>
           ) : (
