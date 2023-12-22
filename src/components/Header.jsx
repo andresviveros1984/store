@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import styled from "styled-components";
 import Box from "@mui/material/Box";
@@ -15,12 +15,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { teal } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
-const Header = ({ categories }) => {
+const Header = ({ categories, getSingleCategory }) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  
+
   const [anEl, setAnEl] = React.useState(null);
+
   const openBurger = Boolean(anEl);
   const navigate = useNavigate();
 
@@ -35,7 +36,7 @@ const Header = ({ categories }) => {
 
   const handleClick = (event) => {
     setAnEl(event.currentTarget);
-    console.log("burger clicked")
+    console.log("burger clicked");
   };
 
   const handleBurgerClose = () => {
@@ -70,19 +71,21 @@ const Header = ({ categories }) => {
               <MenuItem
                 key={category}
                 selected={category === category}
-                onClick={()=>console.log(category)}
+                onClick={() => getSingleCategory(category)}
               >
                 {category}
               </MenuItem>
             ))}
           </Menu>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, color: "secondary" }}
-          >
-            Fabio's Store
-          </Typography>
+          
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, color: "secondary" }}
+            >
+              Fabio's Store
+            </Typography>
+          
           <ShoppingCartIcon />
           {isAuthenticated ? (
             <div>
