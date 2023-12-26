@@ -67,25 +67,27 @@ const Header = ({ categories, getSingleCategory }) => {
             onClose={handleBurgerClose}
             // onClick={handleBurgerClose}
           >
-            {categories.map((category) => (
-              <MenuItem
-                key={category}
-                selected={category === category}
-                onClick={() => getSingleCategory(category)}
-              >
-                {category}
-              </MenuItem>
+            {categories.length > 1 && categories.map((category) => (
+              <Link to={`/${category}`}>
+                <MenuItem
+                  key={category}
+                  selected={category === category}
+                  // onClick={() => getSingleCategory(category)}
+                >
+                  {category}
+                </MenuItem>
+              </Link>
             ))}
           </Menu>
-          
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, color: "secondary" }}
-            >
-              Fabio's Store
-            </Typography>
-          
+
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, color: "secondary" }}
+          >
+            <StyledLink to={"/"}>Fabio's Store</StyledLink>
+          </Typography>
+
           <ShoppingCartIcon />
           {isAuthenticated ? (
             <div>
@@ -147,3 +149,8 @@ const Header = ({ categories, getSingleCategory }) => {
 };
 
 export default Header;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+`;

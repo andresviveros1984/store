@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import Product from './Product';
+import { Box } from '@mui/material';
 
 
-
-const Category = ({category}) => {
+const Category = ({categories}) => {
     return(
-        <div>
-            <p>{category.products}</p>
-        </div>
+        <Box>
+            {categories.map(category => {
+                return(
+                   <p>{category.title}</p> 
+                )
+            })}
+        </Box>
     )
 }
 
