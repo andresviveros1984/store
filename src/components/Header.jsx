@@ -21,21 +21,11 @@ const Header = ({ categories, getSingleCategory }) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
 
   const [state, setState] = React.useState({
-    top: false,
     left: false,
-    bottom: false,
-    right: false,
   });
 
-
-
-
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const [anEl, setAnEl] = React.useState(null);
-
-  const openBurger = Boolean(anEl);
+  
   const navigate = useNavigate();
 
   const handleMenu = (event) => {
@@ -47,20 +37,7 @@ const Header = ({ categories, getSingleCategory }) => {
     setAnchorEl(null);
   };
 
-  const handleClick = (event) => {
-    setAnEl(event.currentTarget);
-    console.log("burger clicked");
-  };
-
  
-  const handleBurgerClose = () => {
-    setAnEl(null);
-  };
-
-
-
- 
-
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -85,30 +62,7 @@ const Header = ({ categories, getSingleCategory }) => {
           >
             <MenuIcon />
           </IconButton>
-          
-          <Menu
-            id="long-menu"
-            MenuListProps={{
-              "aria-labelledby": "long-button",
-            }}
-            anEl={anEl}
-            open={openBurger}
-            onClose={handleBurgerClose}
-            // onClick={handleBurgerClose}
-          >
-            {categories.length > 1 && categories.map((category) => (
-              <Link to={`/${category}`}>
-                <MenuItem
-                  key={category}
-                  selected={category === category}
-                  // onClick={() => getSingleCategory(category)}
-                >
-                  {category}
-                </MenuItem>
-              </Link>
-            ))}
-          </Menu>
-
+      
           <Typography
             variant="h6"
             component="div"

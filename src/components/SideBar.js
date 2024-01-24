@@ -37,7 +37,6 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer, categor
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      {/* <List> */}
       {categories.length > 1 && categories.map((text, index) => (
         <List>
           <Link to={`/${text}`}>
@@ -52,7 +51,6 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer, categor
           </Link>
           <Divider />
         </List>
-
       ))}
     </Box>
   );
