@@ -23,7 +23,7 @@ const Home = () => {
       fetchAllProducts();
     }
     // getCategories();
-  }, []);
+  }, [id]);
 
   function fetchAllProducts() {
     fetch("https://dummyjson.com/products")

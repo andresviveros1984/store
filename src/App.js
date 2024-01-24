@@ -7,6 +7,9 @@ import Cart from './components/Cart.js'
 import User from './components/User';
 import { useState, useEffect } from "react";
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import Product from './components/Product';
+import ProductDetails from './components/ProductDetails';
+import TemporaryDrawer from './components/SideBar';
 
 // import { Category } from '@mui/icons-material';
 
@@ -60,12 +63,14 @@ function App() {
       {/* {console.log(singleCategory.products)} */}
       <div className="App">
         <Header categories={categories} />
+      
         {/* <Header /> */}
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/user' element={<User />} />
           {/* <Route path='/category' element={<Category categories={singleCategory.products}/>}/> */}
           <Route path='/:id' element={<Home  />}/>
+          <Route path='/:category/:id' element={<ProductDetails />} />
           {/* <Cart /> */}
         </Routes>
       </div>

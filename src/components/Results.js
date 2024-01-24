@@ -6,6 +6,7 @@ import Product from './Product';
 
 
 const Results = ({results}) => {
+    
 
     return (
         <Box>

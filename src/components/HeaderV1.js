@@ -14,28 +14,9 @@ import { Menu, MenuItem } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { teal } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
-import TemporaryDrawer from "./SideBar";
-
 
 const Header = ({ categories, getSingleCategory }) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
-
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-
-
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const [anEl, setAnEl] = React.useState(null);
-
-  const openBurger = Boolean(anEl);
   const navigate = useNavigate();
 
   const handleMenu = (event) => {
@@ -43,34 +24,8 @@ const Header = ({ categories, getSingleCategory }) => {
     console.log(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleClick = (event) => {
-    setAnEl(event.currentTarget);
-    console.log("burger clicked");
-  };
-
  
-  const handleBurgerClose = () => {
-    setAnEl(null);
-  };
-
-
-
- 
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
-
-  return (
+ return (
     <Box sx={{ flexGrow: 1, backgroundColor: "red" }}>
       <AppBar position="static">
         <Toolbar>
@@ -80,12 +35,10 @@ const Header = ({ categories, getSingleCategory }) => {
             color="secondary"
             aria-label="menu"
             sx={{ mr: 2 }}
-            // onClick={handleClick}
-            onClick={toggleDrawer('left', true)}
+            onClick={handleClick}
           >
             <MenuIcon />
           </IconButton>
-          
           <Menu
             id="long-menu"
             MenuListProps={{
@@ -173,7 +126,6 @@ const Header = ({ categories, getSingleCategory }) => {
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
-      <TemporaryDrawer state={state} toggleDrawer={toggleDrawer} setState={setState} categories={categories}/>
     </Box>
   );
 };
