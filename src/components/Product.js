@@ -6,17 +6,32 @@ import {
   CardContent,
   CardActions,
   IconButton,
+  Button,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Link } from "react-router-dom";
 
 //display some products
 //use map or for loop
 //display categories as a menu option, side bar on burger menu
 const Product = ({ product }) => {
   return (
-    <Card sx={{ width: "15rem", height:"20rem" , margin:2}}>
-      <CardMedia component="img" title="" image={product.thumbnail} width="8rem" height="150px"/>
-      <CardContent sx={{display: "flex", flexDirection: "column", justifyContent: "space-around",height: "5rem"}}>
+    <Card sx={{ width: "15rem", height: "20rem", margin: 2 }}>
+      <CardMedia
+        component="img"
+        title=""
+        image={product.thumbnail}
+        width="8rem"
+        height="150px"
+      />
+      <CardContent
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          height: "5rem",
+        }}
+      >
         <Typography variant="h6" color="initial">
           {product.title}
         </Typography>
@@ -30,6 +45,9 @@ const Product = ({ product }) => {
       <IconButton aria-label="add to favorites">
         <FavoriteIcon />
       </IconButton>
+      <Link to={`/${product.category}/${product.id}`}>
+        <Button size="small">See More</Button>
+      </Link>
     </Card>
   );
 };
