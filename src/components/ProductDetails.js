@@ -34,23 +34,33 @@ const ProductDetails = () => {
     }, []);
 
     return (
-        <Container>
+        <Box>
             <Grid container>
-                {console.log(productDetail)}
                 {error && (<Typography>{error}</Typography>)}
-                <Grid >
-                    <Box class="imgBx">
-                        <img src={productDetail.images[0]} alt={""} />
-                    </Box>
+                <Grid item xs={12} md={6}>
+                    <Grid container>
+                        <Grid item md={3}>
+                            <Grid container>
+                                {productDetail && productDetail.images.map(image => {
+                                    return (
+                                        <Grid item md={10}>
+                                            <img src={image} alt="" />
+                                        </Grid>
+                                    )
+                                })}
+                            </Grid>
+                        </Grid>
+                        <Grid item md={9}>
+                            <img src={productDetail.thumbnail} alt="" />
+                        </Grid>
+                    </Grid>
                 </Grid>
-                <Grid item md={3}>
-                    <Paper>{productDetail.title}</Paper>
-                </Grid>
-                <Grid item md={3}>
-                    <Paper>{id}</Paper>
+                <Grid item md={6}>
+                    Product details text
                 </Grid>
             </Grid>
-        </Container>
+
+        </Box >
     )
     //create page for product detail
     //box replaces div
