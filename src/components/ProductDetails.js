@@ -46,7 +46,7 @@ const ProductDetails = () => {
             </Box> : (
                 <Grid container>
                     {error && (<Typography>{error}</Typography>)}
-                    <Grid item  md={6}>
+                    <Grid item  md={6} border={"3px solid green"}>
                         <Grid container>
                             <Grid item md={3}>
                                 <Grid container mx={"10px"} my={"10px"}>

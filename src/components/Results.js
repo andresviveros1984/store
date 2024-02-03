@@ -11,7 +11,7 @@ const Results = ({results}) => {
     return (
         <Box>
             {results.products ? (
-                <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+                <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-start" }}>
                     {results.products.map((result) => {
                         return <Product product={result} />;
                     })}
