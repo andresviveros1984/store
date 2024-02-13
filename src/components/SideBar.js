@@ -26,13 +26,13 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer, categor
     >
       {categories.length > 1 && categories.map((text, index) => (
         <List>
-          <Link to={`/${text}`}>
+          <Link to={`/${text}`} style={{textDecoration:"none",color:"black"}}>
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <OpenInBrowserIcon />
                 </ListItemIcon>
-                <ListItemText primary={text.toUpperCase()} />
+                <ListItemText primary={text.toUpperCase().replace("-", " ")} />
               </ListItemButton>
             </ListItem>
           </Link>

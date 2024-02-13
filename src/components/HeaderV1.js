@@ -50,11 +50,11 @@ const Header = ({ categories, getSingleCategory }) => {
             // onClick={handleBurgerClose}
           >
             {categories.length > 1 && categories.map((category) => (
-              <Link to={`/${category}`}>
+              <Link to={`/${category}`} >
                 <MenuItem
                   key={category}
                   selected={category === category}
-                  // onClick={() => getSingleCategory(category)}
+                  style={{textDecoration:"none"}}
                 >
                   {category}
                 </MenuItem>

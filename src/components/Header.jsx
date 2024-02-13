@@ -15,9 +15,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { teal } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 import TemporaryDrawer from "./SideBar";
+import Badge from "@mui/material/Badge";
 
-
-const Header = ({ categories, getSingleCategory }) => {
+const Header = ({ categories, getSingleCategory,cartCount }) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
 
   const [state, setState] = React.useState({
@@ -25,27 +25,27 @@ const Header = ({ categories, getSingleCategory }) => {
   });
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  
+
   const navigate = useNavigate();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
- 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
 
     setState({ ...state, [anchor]: open });
   };
-
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "red" }}>
@@ -58,11 +58,11 @@ const Header = ({ categories, getSingleCategory }) => {
             aria-label="menu"
             sx={{ mr: 2 }}
             // onClick={handleClick}
-            onClick={toggleDrawer('left', true)}
+            onClick={toggleDrawer("left", true)}
           >
             <MenuIcon />
           </IconButton>
-      
+
           <Typography
             variant="h6"
             component="div"
@@ -70,8 +70,9 @@ const Header = ({ categories, getSingleCategory }) => {
           >
             <StyledLink to={"/"}>Fabio's Store</StyledLink>
           </Typography>
-
-          <ShoppingCartIcon />
+          <Badge badgeContent={cartCount} color="cartCol">
+            <ShoppingCartIcon />
+          </Badge>
           {isAuthenticated ? (
             <div>
               <IconButton
@@ -127,7 +128,12 @@ const Header = ({ categories, getSingleCategory }) => {
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
-      <TemporaryDrawer state={state} toggleDrawer={toggleDrawer} setState={setState} categories={categories}/>
+      <TemporaryDrawer
+        state={state}
+        toggleDrawer={toggleDrawer}
+        setState={setState}
+        categories={categories}
+      />
     </Box>
   );
 };

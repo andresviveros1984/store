@@ -20,6 +20,9 @@ const theme = createTheme({
     },
     secondary:{
       main:"#F6F6F6"
+    },
+    cartCol:{
+      main:"#ff0000"
     }
   }
 });
@@ -32,6 +35,9 @@ function App() {
 
   const [categories,setCategories] = useState([]);
   // const [singleCategory,setSingleCategory] = useState([]);
+  const [cartCount,setCartCount] = useState(0);
+
+
 
   useEffect(() => {
     // fetchAllProducts();
@@ -62,7 +68,7 @@ function App() {
       {/* {console.log(results)} */}
       {/* {console.log(singleCategory.products)} */}
       <div className="App">
-        <Header categories={categories} />
+        <Header categories={categories} cartCount={cartCount}/>
       
         {/* <Header /> */}
         <Routes>
@@ -70,7 +76,7 @@ function App() {
           <Route path='/user' element={<User />} />
           {/* <Route path='/category' element={<Category categories={singleCategory.products}/>}/> */}
           <Route path='/:id' element={<Home  />}/>
-          <Route path='/:category/:id' element={<ProductDetails />} />
+          <Route path='/:category/:id' element={<ProductDetails  cartCount={cartCount} setCartCount={setCartCount}/>} />
           {/* <Cart /> */}
         </Routes>
       </div>
