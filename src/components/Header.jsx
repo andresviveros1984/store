@@ -70,6 +70,7 @@ const Header = ({ categories, getSingleCategory,cartCount }) => {
           >
             <StyledLink to={"/"}>Fabio's Store</StyledLink>
           </Typography>
+          {/* {conditional rendering} of icon if authenticated */}
           <Badge badgeContent={cartCount} color="cartCol">
             <ShoppingCartIcon />
           </Badge>

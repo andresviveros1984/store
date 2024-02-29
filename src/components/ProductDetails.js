@@ -27,7 +27,7 @@ const ProductDetails = ({setCartCount,cartCount}) => {
     const [categoryType, setCategoryType] = useState({
         "smartphones":"Choose Color",
         "laptops": "Choose Color",
-        "fragrances": "Choose Size",
+        "fragrances": ["Small","Large"],
         "skincare": "Choose Size",
         "groceries" : "Choose Size",
         "home-decoration":"Choose Color",
@@ -51,16 +51,11 @@ const ProductDetails = ({setCartCount,cartCount}) => {
         //put logic to add selection options based on category
         //put state in place to dynamically change radio options
         //maybe put in usefffect
-        switch(category) {
-            case "smartphones":
-              
-              break;
-            case "":
-             
-              break;
-            default:
-             
-          }
+        //write if statement for color and size using or 
+      
+        if(""){
+
+        }
     }
 
     const handleCart = () =>{
