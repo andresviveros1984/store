@@ -24,7 +24,7 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer, categor
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      {categories.length > 1 && categories.map((text, index) => (
+      {categories.length > 1 && categories.map(text => (
         <List>
           <Link to={`/${text}`} style={{textDecoration:"none",color:"black"}}>
             <ListItem key={text} disablePadding>
