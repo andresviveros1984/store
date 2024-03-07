@@ -15,7 +15,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 
-const ProductDetails = ({setCartCount,cartCount}) => {
+const ProductDetails = ({ setCartCount, cartCount }) => {
 
     let { category, id } = useParams();
 
@@ -23,43 +23,58 @@ const ProductDetails = ({setCartCount,cartCount}) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [mainImage, setMainImage] = useState('');
-    const [radioBTNS,setRadioBTNS] = useState({colors:["red"]});
-    const [categoryType, setCategoryType] = useState({
-        "smartphones":"Choose Color",
-        "laptops": "Choose Color",
-        "fragrances": ["Small","Large"],
-        "skincare": "Choose Size",
-        "groceries" : "Choose Size",
-        "home-decoration":"Choose Color",
-        "furniture":"Choose Color",
-        "tops":"Choose Color",
-        "womens-dresses": "Choose Size",
-        "womens-shoes": "Choose Size",
-        "mens-shirts":"Choose Size",
-        "mens-shoes":"Choose Size",
-        "mens-watches":"Choose Color",
-        "womens-watches":"Choose Color",
-        "womens-bags":"Choose Color",
-        "womens-jewellery":["Gold","Silver"],
-        "sunglasses":"Choose Color",
-        "automotive":false,
-        "motorcycle":false,
-        "lighting":false
-    })
+    const [categoryType,setCategoryType] = useState({});
+    // const [categoryType, setCategoryType] = useState({
+    //     "smartphones": "Choose Color",
+    //     "laptops": "Choose Color",
+    //     "fragrances": ["Small", "Large"],
+    //     "skincare": "Choose Size",
+    //     "groceries": "Choose Size",
+    //     "home-decoration": "Choose Color",
+    //     "furniture": "Choose Color",
+    //     "tops": "Choose Color",
+    //     "womens-dresses": "Choose Size",
+    //     "womens-shoes": "Choose Size",
+    //     "mens-shirts": "Choose Size",
+    //     "mens-shoes": "Choose Size",
+    //     "mens-watches": "Choose Color",
+    //     "womens-watches": "Choose Color",
+    //     "womens-bags": "Choose Color",
+    //     "womens-jewellery": ["Gold", "Silver"],
+    //     "sunglasses": "Choose Color",
+    //     "automotive": false,
+    //     "motorcycle": false,
+    //     "lighting": false
+    // })
 
-    const radioBTNHelper = (category,radios) => {
+    const radioBTNHelper = (category) => {
         //put logic to add selection options based on category
         //put state in place to dynamically change radio options
         //maybe put in usefffect
         //write if statement for color and size using or 
-      
-        if(""){
 
-        }
+        if (category == "smartphones" 
+            || category == "laptops" || 
+            category == "mens-watches" 
+            || category == "sunglasses"
+            || category == "furniture"
+            ) 
+            {
+                setCategoryType({message:"Choose a Color",radios:["Black","Grey","White"]})
+            }
+            else if(category == "skincare" 
+            || category == "fragrances" 
+            || category == "tops"
+            || category == "womens-bags"
+            )
+            {
+                setCategoryType({message:"Choose Size",radios:["Small","Medium","Large"]})
+            }
+            return categoryType;
     }
 
-    const handleCart = () =>{
-        setCartCount(cartCount+1)
+    const handleCart = () => {
+        setCartCount(cartCount + 1)
     }
 
 
@@ -82,11 +97,12 @@ const ProductDetails = ({setCartCount,cartCount}) => {
 
     useEffect(() => {
         getProductDetails();
-    }, []);
+        radioBTNHelper(productDetail.category)
+    }, [productDetail.category]);
 
     return (
         <Box>
-            {console.log(productDetail)}
+            {console.log(categoryType.radios)}
             {!productDetail.images ? <Box sx={{ display: "flex", width: "100vw", height: "100vh", alignItems: "center", justifyContent: 'center' }}>
                 <CircularProgress />
             </Box> : (
@@ -110,31 +126,37 @@ const ProductDetails = ({setCartCount,cartCount}) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item md={6}>
-                        <Box>
-                            <Typography variant="h2" color="initial">{productDetail.brand} {productDetail.title}</Typography>
-                            <Typography variant="h3" color="initial">£{productDetail.price}</Typography>
-                        </Box>
-                        <Box>
-                            <FormControl>
-                                <FormLabel id="demo-row-radio-buttons-group-label">{productDetail.category === "womens-jewellery" ? "Choose from Gold or Silver" : categoryType[productDetail.category]}</FormLabel>
-                                <RadioGroup
-                                    row
-                                    aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
-                                >
-                                    <FormControlLabel value={productDetail.category === "womens-jewellery" ? categoryType[productDetail.category][0] : categoryType[productDetail.category]} control={<Radio />} label={productDetail.category === "womens-jewellery" ? categoryType[productDetail.category][0] : categoryType[productDetail.category]} />
-                                    <FormControlLabel value={productDetail.category === "womens-jewellery" ? categoryType[productDetail.category][1] : categoryType[productDetail.category]} control={<Radio />} label={productDetail.category === "womens-jewellery" ? categoryType[productDetail.category][1] : categoryType[productDetail.category]} />
-                                </RadioGroup>
-                            </FormControl>
-                        </Box>
-                        <Box>
-                            <Typography variant="h4" color="initial">Description</Typography>
-                            <Typography variant="inherit" color="initial">{productDetail.description}</Typography>
-                        </Box>
-                        <Box>
-                            <Button variant="outlined" onClick={handleCart}>Add To Cart</Button>
-                        </Box>
+                    < Grid item md={6}>
+                            <Box>
+                                <Typography variant="h2" color="initial">{productDetail.brand} {productDetail.title}</Typography>
+                                <Typography variant="h3" color="initial">£{productDetail.price}</Typography>
+                            </Box>
+                            <Box sx={{ display: "flex", flexDirection: "column", height: "61%", justifyContent: "space-evenly" }}>
+
+                                <Box>
+                                    <FormControl>
+                                        <FormLabel id="demo-row-radio-buttons-group-label">{categoryType.message}</FormLabel>
+                                        <RadioGroup
+                                            row
+                                            aria-labelledby="demo-row-radio-buttons-group-label"
+                                            name="row-radio-buttons-group"
+                                        >
+                                           {categoryType.radios && categoryType.radios.map(radio =>{
+                                                return(
+                                                <FormControlLabel value={radio} control={<Radio />} label={radio} />
+                                                )
+                                           })}
+                                        </RadioGroup>
+                                    </FormControl>
+                                </Box>
+                                <Box>
+                                    <Typography variant="h4" color="initial">Description</Typography>
+                                    <Typography variant="inherit" color="initial">{productDetail.description}</Typography>
+                                </Box>
+                                <Box>
+                                    <Button variant="outlined" onClick={handleCart}>Add To Cart</Button>
+                                </Box>
+                            </Box>
                     </Grid>
                 </Grid>)}
         </Box >

@@ -35,9 +35,6 @@ const Product = ({ product }) => {
         <Typography variant="h6" color="initial">
           {product.title}
         </Typography>
-        {/* <Typography variant="inherit" color="initial">
-          {product.description}
-        </Typography> */}
         <Typography variant="inherit" color="initial">
           $ {product.price}
         </Typography>
