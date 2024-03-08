@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 
 const ProductDetails = ({ setCartCount, cartCount }) => {
 
-    let { category, id } = useParams();
+    let {id } = useParams();
 
     const [productDetail, setProductDetail] = useState({});
     const [error, setError] = useState(null);
@@ -48,11 +48,6 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
     // })
 
     const radioBTNHelper = (category) => {
-        //put logic to add selection options based on category
-        //put state in place to dynamically change radio options
-        //maybe put in usefffect
-        //write if statement for color and size using or 
-
         if (category == "smartphones" 
             || category == "laptops" || 
             category == "mens-watches" 
@@ -131,9 +126,9 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
                                 <Typography variant="h2" color="initial">{productDetail.brand} {productDetail.title}</Typography>
                                 <Typography variant="h3" color="initial">£{productDetail.price}</Typography>
                             </Box>
-                            <Box sx={{ display: "flex", flexDirection: "column", height: "61%", justifyContent: "space-evenly" }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", height: "61%", justifyContent: "space-evenly",border:"1px solid red" }}>
 
-                                <Box>
+                                <Box >
                                     <FormControl>
                                         <FormLabel id="demo-row-radio-buttons-group-label">{categoryType.message}</FormLabel>
                                         <RadioGroup
