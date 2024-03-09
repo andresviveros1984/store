@@ -17,13 +17,13 @@ import Button from '@mui/material/Button';
 
 const ProductDetails = ({ setCartCount, cartCount }) => {
 
-    let {id } = useParams();
+    let { id } = useParams();
 
     const [productDetail, setProductDetail] = useState({});
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [mainImage, setMainImage] = useState('');
-    const [categoryType,setCategoryType] = useState({});
+    const [categoryType, setCategoryType] = useState({});
     // const [categoryType, setCategoryType] = useState({
     //     "smartphones": "Choose Color",
     //     "laptops": "Choose Color",
@@ -48,24 +48,22 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
     // })
 
     const radioBTNHelper = (category) => {
-        if (category == "smartphones" 
-            || category == "laptops" || 
-            category == "mens-watches" 
+        if (category == "smartphones"
+            || category == "laptops" ||
+            category == "mens-watches"
             || category == "sunglasses"
             || category == "furniture"
-            ) 
-            {
-                setCategoryType({message:"Choose a Color",radios:["Black","Grey","White"]})
-            }
-            else if(category == "skincare" 
-            || category == "fragrances" 
+        ) {
+            setCategoryType({ message: "Choose a Color", radios: ["Black", "Grey", "White"] })
+        }
+        else if (category == "skincare"
+            || category == "fragrances"
             || category == "tops"
             || category == "womens-bags"
-            )
-            {
-                setCategoryType({message:"Choose Size",radios:["Small","Medium","Large"]})
-            }
-            return categoryType;
+        ) {
+            setCategoryType({ message: "Choose Size", radios: ["Small", "Medium", "Large"] })
+        }
+        return categoryType;
     }
 
     const handleCart = () => {
@@ -97,7 +95,6 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
 
     return (
         <Box>
-            {console.log(categoryType.radios)}
             {!productDetail.images ? <Box sx={{ display: "flex", width: "100vw", height: "100vh", alignItems: "center", justifyContent: 'center' }}>
                 <CircularProgress />
             </Box> : (
@@ -122,11 +119,12 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
                         </Grid>
                     </Grid>
                     < Grid item md={6}>
-                            <Box>
+                        <Box sx={{p:"16px"}}>
+                            <Box sx={{pb:"16px"}}>
                                 <Typography variant="h2" color="initial">{productDetail.brand} {productDetail.title}</Typography>
                                 <Typography variant="h3" color="initial">£{productDetail.price}</Typography>
                             </Box>
-                            <Box sx={{ display: "flex", flexDirection: "column", height: "61%", justifyContent: "space-evenly",border:"1px solid red" }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", height: "61%", justifyContent: "space-evenly" }}>
 
                                 <Box >
                                     <FormControl>
@@ -136,11 +134,11 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
                                         >
-                                           {categoryType.radios && categoryType.radios.map(radio =>{
-                                                return(
-                                                <FormControlLabel value={radio} control={<Radio />} label={radio} />
+                                            {categoryType.radios && categoryType.radios.map(radio => {
+                                                return (
+                                                    <FormControlLabel value={radio} control={<Radio />} label={radio} />
                                                 )
-                                           })}
+                                            })}
                                         </RadioGroup>
                                     </FormControl>
                                 </Box>
@@ -152,6 +150,7 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
                                     <Button variant="outlined" onClick={handleCart}>Add To Cart</Button>
                                 </Box>
                             </Box>
+                        </Box>
                     </Grid>
                 </Grid>)}
         </Box >
