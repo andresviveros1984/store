@@ -68,6 +68,7 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
 
     const handleCart = () => {
         setCartCount(cartCount + 1)
+        alert(productDetail.title + "has been aded to your cart")
     }
 
 
@@ -120,13 +121,13 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
                     </Grid>
                     < Grid item md={6}>
                         <Box sx={{p:"16px"}}>
-                            <Box sx={{pb:"16px"}}>
+                            <Box sx={{pb:"20px"}}>
                                 <Typography variant="h2" color="initial">{productDetail.brand} {productDetail.title}</Typography>
                                 <Typography variant="h3" color="initial">£{productDetail.price}</Typography>
                             </Box>
-                            <Box sx={{ display: "flex", flexDirection: "column", height: "61%", justifyContent: "space-evenly" }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
 
-                                <Box >
+                                <Box sx={{pb:"30px"}}>
                                     <FormControl>
                                         <FormLabel id="demo-row-radio-buttons-group-label">{categoryType.message}</FormLabel>
                                         <RadioGroup
@@ -142,12 +143,12 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
                                         </RadioGroup>
                                     </FormControl>
                                 </Box>
-                                <Box>
+                                <Box sx={{pb:"30px"}}>
                                     <Typography variant="h4" color="initial">Description</Typography>
                                     <Typography variant="inherit" color="initial">{productDetail.description}</Typography>
                                 </Box>
-                                <Box>
-                                    <Button variant="outlined" onClick={handleCart}>Add To Cart</Button>
+                                <Box sx={{pb:"36px",border:"1px solid red"}}>
+                                    <AddToCartBTN variant="outlined" size='large' color='primary' onClick={handleCart}>Add To Cart</AddToCartBTN>
                                 </Box>
                             </Box>
                         </Box>
@@ -160,3 +161,9 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
 }
 
 export default ProductDetails;
+
+
+const AddToCartBTN = styled(Button)({
+    backgroundColor:"primary"
+    
+})
