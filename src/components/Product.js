@@ -11,9 +11,6 @@ import {
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 
-//display some products
-//use map or for loop
-//display categories as a menu option, side bar on burger menu
 const Product = ({ product }) => {
   return (
     <Card sx={{ width: "15rem", height: "20rem", margin: 2 }}>
@@ -51,6 +48,3 @@ const Product = ({ product }) => {
 
 export default Product;
 
-// const ImageContainer = styled.div`
-
-// `

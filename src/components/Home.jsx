@@ -45,18 +45,6 @@ const Home = () => {
 
   return (
     <Container>
-      {console.log(results)}
-      {/* {results.products ? (
-        <Box sx={{display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
-          {results.products.map((result) => {
-            return <Product product={result} />;
-          })}
-        </Box>
-      ) : (
-        <Box sx={{ display: "flex", width: "100vw", height: "100vh" ,alignItems:"center", justifyContent:'center'}}>
-          <CircularProgress />
-        </Box>
-      )} */}
       <Results results={results} />
     </Container>
   );

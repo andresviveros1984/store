@@ -17,7 +17,7 @@ import { createTheme } from "@mui/material/styles";
 import TemporaryDrawer from "./SideBar";
 import Badge from "@mui/material/Badge";
 
-const Header = ({ categories, getSingleCategory,cartCount }) => {
+const Header = ({ categories, getSingleCategory, cartCount }) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
 
   const [state, setState] = React.useState({
@@ -71,9 +71,13 @@ const Header = ({ categories, getSingleCategory,cartCount }) => {
             <StyledLink to={"/"}>Fabio's Store</StyledLink>
           </Typography>
           {/* {conditional rendering} of icon if authenticated */}
-          <Badge badgeContent={cartCount} color="cartCol">
-            <ShoppingCartIcon />
-          </Badge>
+          {isAuthenticated && (
+            <StyledLink  to={'/cart'}>
+            <Badge badgeContent={cartCount} color="cartCol">
+              <ShoppingCartIcon />
+            </Badge>
+            </StyledLink>
+          )}
           {isAuthenticated ? (
             <div>
               <IconButton

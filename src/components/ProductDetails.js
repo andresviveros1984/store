@@ -15,7 +15,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 
-const ProductDetails = ({ setCartCount, cartCount }) => {
+const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCartItem}) => {
 
     let { id } = useParams();
 
@@ -66,9 +66,24 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
         return categoryType;
     }
 
-    const handleCart = () => {
-        setCartCount(cartCount + 1)
-        alert(productDetail.title + "has been aded to your cart")
+    const handleCart = (productDetail) => {
+        setCartCount(cartCount + 1);
+        const cartItem = {
+            price:productDetail.price,
+            name:productDetail.title,
+            image:productDetail.thumbnail,
+            productID:productDetail.id,
+            quantity:1
+        }
+       const itemIndex = cartItems.findIndex(item => item.productID == cartItem.productID)
+        if(itemIndex === -1){
+            setCartItems([...cartItems, cartItem]);
+        }else{
+            cartItems[itemIndex].quantity +=1
+         setCartItems(cartItems);   
+        }
+        
+        alert(productDetail.title + " has been aded to your cart")
     }
 
 
@@ -147,8 +162,8 @@ const ProductDetails = ({ setCartCount, cartCount }) => {
                                     <Typography variant="h4" color="initial">Description</Typography>
                                     <Typography variant="inherit" color="initial">{productDetail.description}</Typography>
                                 </Box>
-                                <Box sx={{pb:"36px",border:"1px solid red"}}>
-                                    <AddToCartBTN variant="outlined" size='large' color='primary' onClick={handleCart}>Add To Cart</AddToCartBTN>
+                                <Box sx={{pb:"36px"}}>
+                                    <AddToCartBTN variant="outlined" size='large' color='primary' onClick={()=>handleCart(productDetail)}>Add To Cart</AddToCartBTN>
                                 </Box>
                             </Box>
                         </Box>

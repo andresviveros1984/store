@@ -31,38 +31,20 @@ const theme = createTheme({
 
 function App() {
 
-  // const [results, setResults] = useState([]);
-  // const url = 'https://dummyjson.com/products';
-
   const [categories,setCategories] = useState([]);
-  // const [singleCategory,setSingleCategory] = useState([]);
   const [cartCount,setCartCount] = useState(0);
-
-
+  const [cartItems,setCartItems] = useState([]);
+  const [cartItem, setCartItem] = useState();
 
   useEffect(() => {
-    // fetchAllProducts();
     getCategories();
   }, [])
-
-  // function fetchAllProducts() {
-  //   fetch('https://dummyjson.com/products')
-  //     .then(res => res.json())
-  //     .then(response => setResults(response));
-  // }
 
   function getCategories() {
     fetch('https://dummyjson.com/products/categories')
     .then(res => res.json())
     .then(response => setCategories(response) )
   }
-
-  // function getSingleCategory(category) {
-  //   fetch(`https://dummyjson.com/products/category/${category}`)
-  //     .then((res) => res.json())
-  //     .then(response => setResults(response));
-      
-  // }
 
   return (
     <ThemeProvider theme={theme}>
@@ -72,8 +54,8 @@ function App() {
           <Route path='/' element={<Home />} />
              <Route path='/user' element={<Authenticated><User /></Authenticated> }/>
           <Route path='/:id' element={<Home  />}/>
-          <Route path='/:category/:id' element={<Authenticated><ProductDetails  cartCount={cartCount} setCartCount={setCartCount}/></Authenticated>} />
-
+          <Route path='/:category/:id' element={<Authenticated><ProductDetails  cartCount={cartCount} setCartCount={setCartCount} cartItems={cartItems} setCartItems={setCartItems} cartItem={cartItem} setCartItem={setCartItem}/></Authenticated>} />
+          <Route path='/cart' element={<Authenticated><Cart cartItems={cartItems} cartItem={cartItem}/></Authenticated>}/>
         </Routes>
       </div>
     </ThemeProvider>
