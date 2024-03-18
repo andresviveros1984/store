@@ -80,9 +80,9 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
             setCartItems([...cartItems, cartItem]);
         }else{
             cartItems[itemIndex].quantity +=1
-         setCartItems(cartItems);   
+            setCartItems(cartItems);   
         }
-        
+        //
         alert(productDetail.title + " has been aded to your cart")
     }
 
