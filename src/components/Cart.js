@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography'
-import { Box, Button, List, ListItem, ListItemText,Avatar,ListItemAvatar } from '@mui/material';
+import { Box, Button, List, ListItem, ListItemText, Avatar, ListItemAvatar } from '@mui/material';
+import Divider from '@mui/material/Divider';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UseNumberInputCompact from './UseNumberInputCompact';
 
@@ -18,6 +19,8 @@ import UseNumberInputCompact from './UseNumberInputCompact';
 const Cart = ({ cartItems, cartItem }) => {
 
     const [quantity, setQuantity] = useState(0);
+    const [deleteItem,setDeleteItem] = useState(false);
+
 
     return (
         <Box >
@@ -28,33 +31,23 @@ const Cart = ({ cartItems, cartItem }) => {
                 <Typography variant="inherit" color="initial">Price</Typography>
                 <Typography variant="inherit" color="initial">Total</Typography>
             </Box>
-            <Box sx={{ border: "1px solid red" }}>
-
-                {/* <List>
-                    <ListItem>
-                        <ListItemText primary={"item 1"} />
-                        <UseNumberInputCompact />
-                        <DeleteIcon />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary={"item 2"} />
-                        <UseNumberInputCompact />
-                        <DeleteIcon />
-                    </ListItem>
-                </List> */}
-                <List>
-                    {cartItems.map(item => {
-                        return (
-                        <ListItem>
-                            <img src={item.image}/>
-                            <ListItemText primary={item.name}/>
-                            <ListItemText primary={"£" + item.price}/>
-                            <UseNumberInputCompact />
-                            <DeleteIcon />
-                        </ListItem>
+            <Box sx={{ backgroundColor: "grey" }}>
+                {cartItems.map(item => {
+                    return (
+                        <List>
+                            <ListItem sx={{ pr: "50px"}}>
+                                <img src={item.image} style={{ width: "100px" }} />
+                                <ListItemText primary={item.name} sx={{ pl: "5px", width: "90px" }} />
+                                <ListItemText primary={"£" + item.price} />
+                                <UseNumberInputCompact quantity={item.quantity}/>
+                                <DeleteIcon />  
+                            </ListItem>
+                            <Divider />
+                        </List>
                     )
-                    })}
-                </List>
+                })}
+
+
             </Box>
         </Box>
     )

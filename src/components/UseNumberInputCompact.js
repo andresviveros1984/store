@@ -20,7 +20,7 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(props, r
   return (
     <StyledInputRoot {...getRootProps()}>
       <StyledStepperButton className="increment" {...getIncrementButtonProps()}>
-        <ArrowDropUpRoundedIcon />
+        <ArrowDropUpRoundedIcon onClick={()=>console.log("Increase quantity")}/>
       </StyledStepperButton>
       <StyledStepperButton className="decrement" {...getDecrementButtonProps()}>
         <ArrowDropDownRoundedIcon />
@@ -30,7 +30,7 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(props, r
   );
 });
 
-export default function UseNumberInputCompact() {
+export default function UseNumberInputCompact({quantity}) {
   const [value, setValue] = React.useState(null);
 
   return (
@@ -42,7 +42,7 @@ export default function UseNumberInputCompact() {
         value={value}
         onChange={(event, val) => setValue(val)}
       />
-      <Pre>Quantity: {value ?? ' '}</Pre>
+      <Pre>Quantity: {value ?? quantity}</Pre>
     </Layout>
   );
 }
