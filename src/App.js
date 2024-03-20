@@ -55,7 +55,7 @@ function App() {
              <Route path='/user' element={<Authenticated><User /></Authenticated> }/>
           <Route path='/:id' element={<Home  />}/>
           <Route path='/:category/:id' element={<Authenticated><ProductDetails  cartCount={cartCount} setCartCount={setCartCount} cartItems={cartItems} setCartItems={setCartItems} cartItem={cartItem} setCartItem={setCartItem}/></Authenticated>} />
-          <Route path='/cart' element={<Authenticated><Cart cartItems={cartItems} cartItem={cartItem}/></Authenticated>}/>
+          <Route path='/cart' element={<Authenticated><Cart cartCount={cartCount} setCartCount={setCartCount} cartItems={cartItems} cartItem={cartItem} setCartItems={setCartItems}/></Authenticated>}/>
         </Routes>
       </div>
     </ThemeProvider>

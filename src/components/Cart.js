@@ -16,16 +16,35 @@ import UseNumberInputCompact from './UseNumberInputCompact';
 
 //create ui
 //create functions for handling increase in quantity
-const Cart = ({ cartItems, cartItem }) => {
+const Cart = ({ cartItems, setCartItems,setCartCount,cartCount }) => {
 
     const [quantity, setQuantity] = useState(0);
     const [deleteItem,setDeleteItem] = useState(false);
 
 
+    const handleRemoveFromItemCart = (item) => {
+        const remainingCartItems = [];
+        if(cartItems){
+            for (let i = 0; i < cartItems.length; i++) {
+                if(item.productID === cartItems[i].productID){
+                    continue;
+                }else{
+                    remainingCartItems.push(cartItems[i]);
+                } 
+            }
+        }
+        setCartItems(remainingCartItems);
+        if(cartItems.length == 0){
+            setCartCount(cartCount = 0);
+        }
+        //how to update the cart counter?? 
+    }
+
     return (
         <Box >
             {console.log(cartItems)}
             <Typography variant="h3" color="initial">Your Cart</Typography>
+            {cartItems.length === 0 && <Typography variant='h4'>Your Cart is empty</Typography>}
             <Box sx={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
                 <Typography variant="inherit" color="initial">Item</Typography>
                 <Typography variant="inherit" color="initial">Price</Typography>
@@ -40,14 +59,12 @@ const Cart = ({ cartItems, cartItem }) => {
                                 <ListItemText primary={item.name} sx={{ pl: "5px", width: "90px" }} />
                                 <ListItemText primary={"£" + item.price} />
                                 <UseNumberInputCompact quantity={item.quantity}/>
-                                <DeleteIcon />  
+                                <DeleteIcon onClick={()=>handleRemoveFromItemCart(item)} />  
                             </ListItem>
                             <Divider />
                         </List>
                     )
                 })}
-
-
             </Box>
         </Box>
     )
