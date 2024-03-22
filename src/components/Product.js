@@ -33,7 +33,7 @@ const Product = ({ product }) => {
           {product.title}
         </Typography>
         <Typography variant="inherit" color="initial">
-          $ {product.price}
+        £{product.price}
         </Typography>
       </CardContent>
       <IconButton aria-label="add to favorites">
