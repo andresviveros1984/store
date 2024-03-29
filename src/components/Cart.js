@@ -30,20 +30,31 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
         
     }
 
-    const handleIncreaseQuantity = () => {
+    const handleIncreaseQuantity = (i) => {
         //state in cart has to increase
         // add to cart start
+        
+        cartItems[i] = {...cartItems[i],quantity:cartItems[i].quantity+1}
+        setCartItems(cartItems)
         setCartCount(cartCount +=1);
+       
+        console.log(cartItems)
     }
 
-    const handleDecreaseQuantity = () => {
+    const handleDecreaseQuantity = (i) => {
+        cartItems[i] = {...cartItems[i],quantity:cartItems[i].quantity-1}
+        setCartItems(cartItems)
         setCartCount(cartCount -=1);
+        if(cartItems[i].quantity == 0){
+            cartItems.splice(i,1);
+            setCartItems(cartItems)
+        }
     }
 
 
     return (
         <Box >
-            {console.log(cartItems)}
+            {/* {console.log(cartItems)} */}
             <Typography variant="h3" color="initial">Your Cart</Typography>
             <Box sx={{ display: "flex", justifyContent:"space-between", padding: "20px" }}>
                 <Typography variant="inherit" color="initial">Item</Typography>
@@ -51,22 +62,22 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
                 <Typography variant="inherit" color="initial">Total</Typography>
             </Box>
             {cartItems.length === 0 && <Typography variant='h4'>Your Cart is empty</Typography>}
-            <Box sx={{ backgroundColor: "grey",display:"flex",justifyContent:"center" }}>
-                {cartItems.map(item => {
+            <Box sx={{ backgroundColor: "grey"}}>
+                {cartItems.map((item,index) => {
                     return (
                         <List>
                             <ListItem sx={{ pr: "50px" }}>
-                                <img src={item.image} style={{ width: "100px" }} />
+                                <img src={item.image} style={{ width: "120px",height:"90px" }} />
                                 <ListItemText primary={item.name} sx={{ pl: "5px", width: "90px" }} />
                                 <ListItemText primary={"£" + item.price} />
                                 {/* <UseNumberInputCompact quantity={item.quantity}/> */}
                                 <Box sx={{display:"flex", height:"30px",alignItems:"center"}}>
                                     <IconButton >
-                                        <AddCircleOutlineIcon onClick={handleIncreaseQuantity}/>
+                                        <AddCircleOutlineIcon onClick={()=>handleIncreaseQuantity(index)}/>
                                     </IconButton>
                                     <Typography variant='inherit'>{item.quantity}</Typography>
                                     <IconButton>
-                                        <RemoveCircleOutlineIcon onClick={handleDecreaseQuantity}/>
+                                        <RemoveCircleOutlineIcon onClick={()=>handleDecreaseQuantity(index)}/>
                                     </IconButton>
                                     {/* {create function one or two to handle increase and decrease
                                     ,once quantity is zero in ui, remove cart item

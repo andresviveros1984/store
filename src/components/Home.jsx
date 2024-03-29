@@ -22,7 +22,6 @@ const Home = () => {
     } else {
       fetchAllProducts();
     }
-    // getCategories();
   }, [id]);
 
   function fetchAllProducts() {
@@ -30,12 +29,6 @@ const Home = () => {
       .then((res) => res.json())
       .then((response) => setResults(response));
   }
-
-  // function getCategories() {
-  //   fetch("https://dummyjson.com/products/categories")
-  //     .then((res) => res.json())
-  //     .then((response) => setCategories(response));
-  // }
 
   function getSingleCategory(category) {
     fetch(`https://dummyjson.com/products/category/${category}`)

@@ -23,7 +23,8 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [mainImage, setMainImage] = useState('');
-    const [categoryType, setCategoryType] = useState({});
+    const [categoryType, setCategoryType] = useState({ message: "", radios: [] });
+    const [variant,setVariant] = useState()
     // const [categoryType, setCategoryType] = useState({
     //     "smartphones": "Choose Color",
     //     "laptops": "Choose Color",
@@ -73,8 +74,11 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
             name:productDetail.title,
             image:productDetail.thumbnail,
             productID:productDetail.id,
+            variant:variant,
             quantity:1
         }
+        //if radio is checked, assign value to variant value
+        //if user adds different variant to same product, new product should be shown, not quantity
        const itemIndex = cartItems.findIndex(item => item.productID == cartItem.productID)
         if(itemIndex === -1){
             setCartItems([...cartItems, cartItem]);
@@ -107,6 +111,7 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
     useEffect(() => {
         getProductDetails();
         radioBTNHelper(productDetail.category)
+        setVariant(categoryType.radios[0])
     }, [productDetail.category]);
 
     return (
@@ -152,7 +157,7 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
                                         >
                                             {categoryType.radios && categoryType.radios.map(radio => {
                                                 return (
-                                                    <FormControlLabel value={radio} control={<Radio />} label={radio} />
+                                                    <FormControlLabel onChange={(e)=>setVariant(e.target.value)} value={radio} checked={radio === variant} control={<Radio />} label={radio} />
                                                 )
                                             })}
                                         </RadioGroup>
