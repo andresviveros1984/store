@@ -14,8 +14,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
+import AddedToCartDialog from "./AddedToCartDialog";
 
-const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCartItem}) => {
+const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setCartItem }) => {
 
     let { id } = useParams();
 
@@ -24,7 +25,19 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
     const [loading, setLoading] = useState(false);
     const [mainImage, setMainImage] = useState('');
     const [categoryType, setCategoryType] = useState({ message: "", radios: [] });
-    const [variant,setVariant] = useState()
+    const [variant, setVariant] = useState()
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
     // const [categoryType, setCategoryType] = useState({
     //     "smartphones": "Choose Color",
     //     "laptops": "Choose Color",
@@ -70,24 +83,25 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
     const handleCart = (productDetail) => {
         setCartCount(cartCount + 1);
         const cartItem = {
-            price:productDetail.price,
-            name:productDetail.title,
-            image:productDetail.thumbnail,
-            productID:productDetail.id,
-            variant:variant,
-            quantity:1
+            price: productDetail.price,
+            name: productDetail.title,
+            image: productDetail.thumbnail,
+            productID: productDetail.id,
+            variant: variant,
+            quantity: 1
         }
         //if radio is checked, assign value to variant value
         //if user adds different variant to same product, new product should be shown, not quantity
-       const itemIndex = cartItems.findIndex(item => item.productID == cartItem.productID)
-        if(itemIndex === -1){
+        const itemIndex = cartItems.findIndex(item => item.productID == cartItem.productID)
+        if (itemIndex === -1) {
             setCartItems([...cartItems, cartItem]);
-        }else{
-            cartItems[itemIndex].quantity +=1
-            setCartItems(cartItems);   
+        } else {
+            cartItems[itemIndex].quantity += 1
+            setCartItems(cartItems);
         }
         //
-        alert(productDetail.title + " has been aded to your cart")
+        handleClickOpen();
+        // alert(productDetail.title + " has been aded to your cart");
     }
 
 
@@ -116,6 +130,7 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
 
     return (
         <Box>
+            <AddedToCartDialog handleClickOpen={handleClickOpen} handleClose={handleClose} open={open} setOpen={setOpen} productDetail={productDetail}/>
             {!productDetail.images ? <Box sx={{ display: "flex", width: "100vw", height: "100vh", alignItems: "center", justifyContent: 'center' }}>
                 <CircularProgress />
             </Box> : (
@@ -140,14 +155,14 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
                         </Grid>
                     </Grid>
                     < Grid item md={6}>
-                        <Box sx={{p:"16px"}}>
-                            <Box sx={{pb:"20px"}}>
+                        <Box sx={{ p: "16px" }}>
+                            <Box sx={{ pb: "20px" }}>
                                 <Typography variant="h2" color="initial">{productDetail.brand} {productDetail.title}</Typography>
                                 <Typography variant="h3" color="initial">£{productDetail.price}</Typography>
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
 
-                                <Box sx={{pb:"30px"}}>
+                                <Box sx={{ pb: "30px" }}>
                                     <FormControl>
                                         <FormLabel id="demo-row-radio-buttons-group-label">{categoryType.message}</FormLabel>
                                         <RadioGroup
@@ -157,23 +172,24 @@ const ProductDetails = ({ setCartCount, cartCount,cartItems, setCartItems,setCar
                                         >
                                             {categoryType.radios && categoryType.radios.map(radio => {
                                                 return (
-                                                    <FormControlLabel onChange={(e)=>setVariant(e.target.value)} value={radio} checked={radio === variant} control={<Radio />} label={radio} />
+                                                    <FormControlLabel onChange={(e) => setVariant(e.target.value)} value={radio} checked={radio === variant} control={<Radio />} label={radio} />
                                                 )
                                             })}
                                         </RadioGroup>
                                     </FormControl>
                                 </Box>
-                                <Box sx={{pb:"30px"}}>
+                                <Box sx={{ pb: "30px" }}>
                                     <Typography variant="h4" color="initial">Description</Typography>
                                     <Typography variant="inherit" color="initial">{productDetail.description}</Typography>
                                 </Box>
-                                <Box sx={{pb:"36px"}}>
-                                    <AddToCartBTN variant="outlined" size='large' color='primary' onClick={()=>handleCart(productDetail)}>Add To Cart</AddToCartBTN>
+                                <Box sx={{ pb: "36px" }}>
+                                    <AddToCartBTN variant="outlined" size='large' color='primary' onClick={() => handleCart(productDetail)}>Add To Cart</AddToCartBTN>
                                 </Box>
                             </Box>
                         </Box>
                     </Grid>
                 </Grid>)}
+
         </Box >
     )
     //create page for product detail
@@ -184,6 +200,6 @@ export default ProductDetails;
 
 
 const AddToCartBTN = styled(Button)({
-    backgroundColor:"primary"
-    
+    backgroundColor: "primary"
+
 })

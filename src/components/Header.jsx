@@ -48,7 +48,7 @@ const Header = ({ categories, getSingleCategory, cartCount }) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, backgroundColor: "red" }}>
+    <Box sx={{ flexGrow: 1}}>
       <AppBar position="static">
         <Toolbar>
           <IconButton

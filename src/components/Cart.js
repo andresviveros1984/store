@@ -31,9 +31,6 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
     }
 
     const handleIncreaseQuantity = (i) => {
-        //state in cart has to increase
-        // add to cart start
-        
         cartItems[i] = {...cartItems[i],quantity:cartItems[i].quantity+1}
         setCartItems(cartItems)
         setCartCount(cartCount +=1);
@@ -69,7 +66,7 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
                             <ListItem sx={{ pr: "50px" }}>
                                 <img src={item.image} style={{ width: "120px",height:"90px" }} />
                                 <ListItemText primary={item.name} sx={{ pl: "5px", width: "90px" }} />
-                                <ListItemText primary={"£" + item.price} />
+                                <ListItemText primary={"£" + (item.quantity * item.price)} />
                                 {/* <UseNumberInputCompact quantity={item.quantity}/> */}
                                 <Box sx={{display:"flex", height:"30px",alignItems:"center"}}>
                                     <IconButton >
