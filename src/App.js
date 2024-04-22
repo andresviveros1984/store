@@ -19,11 +19,11 @@ const theme = createTheme({
     primary: {
       main: "#09090A"
     },
-    secondary:{
-      main:"#F6F6F6"
+    secondary: {
+      main: "#F6F6F6"
     },
-    cartCol:{
-      main:"#ff0000"
+    cartCol: {
+      main: "#ff0000"
     }
   }
 });
@@ -31,9 +31,9 @@ const theme = createTheme({
 
 function App() {
 
-  const [categories,setCategories] = useState([]);
-  const [cartCount,setCartCount] = useState(0);
-  const [cartItems,setCartItems] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
   const [cartItem, setCartItem] = useState();
 
   useEffect(() => {
@@ -42,20 +42,30 @@ function App() {
 
   function getCategories() {
     fetch('https://dummyjson.com/products/categories')
-    .then(res => res.json())
-    .then(response => setCategories(response) )
+      .then(res => res.json())
+      .then(response => setCategories(response))
   }
 
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Header categories={categories} cartCount={cartCount}/>
+        <Header categories={categories} cartCount={cartCount} />
         <Routes>
           <Route path='/' element={<Home />} />
-             <Route path='/user' element={<Authenticated><User /></Authenticated> }/>
-          <Route path='/:id' element={<Home  />}/>
-          <Route path='/:category/:id' element={<Authenticated><ProductDetails  cartCount={cartCount} setCartCount={setCartCount} cartItems={cartItems} setCartItems={setCartItems} cartItem={cartItem} setCartItem={setCartItem}/></Authenticated>} />
-          <Route path='/cart' element={<Authenticated><Cart cartCount={cartCount} setCartCount={setCartCount} cartItems={cartItems} cartItem={cartItem} setCartItems={setCartItems}/></Authenticated>}/>
+          <Route path='/user' element={<Authenticated><User /></Authenticated>} />
+          <Route path='/:id' element={<Home />} />
+          <Route path='/:category/:id'
+            element={<Authenticated><ProductDetails
+              cartCount={cartCount} setCartCount={setCartCount}
+              cartItems={cartItems} setCartItems={setCartItems}
+              cartItem={cartItem} setCartItem={setCartItem} /></Authenticated>}
+          />
+          <Route path='/cart'
+            element={<Authenticated><Cart
+              cartCount={cartCount}
+              setCartCount={setCartCount}
+              cartItems={cartItems}
+              cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} />
         </Routes>
       </div>
     </ThemeProvider>

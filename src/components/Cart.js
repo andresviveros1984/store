@@ -58,7 +58,7 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
                 <Typography variant="inherit" color="initial">Price</Typography>
                 <Typography variant="inherit" color="initial">Total</Typography>
             </Box>
-            {cartItems.length === 0 && <Typography variant='h4'>Your Cart is empty</Typography>}
+            {cartItems.length === 0 && <Typography variant='h4' sx={{textAlign:"center"}}>Your Cart is empty</Typography>}
             <Box sx={{ backgroundColor: "grey"}}>
                 {cartItems.map((item,index) => {
                     return (

@@ -17,6 +17,8 @@ import { createTheme } from "@mui/material/styles";
 import TemporaryDrawer from "./SideBar";
 import Badge from "@mui/material/Badge";
 
+
+
 const Header = ({ categories, getSingleCategory, cartCount }) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
 
