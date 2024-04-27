@@ -52,19 +52,20 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
     return (
         <Box >
             {/* {console.log(cartItems)} */}
-            <Typography variant="h3" color="initial">Your Cart</Typography>
+            <Typography variant="h3" color="initial" sx={{textAlign:"center"}}>Your Cart</Typography>
+            {cartCount == 0 ? " " :(
             <Box sx={{ display: "flex", justifyContent:"space-between", padding: "20px" }}>
-                <Typography variant="inherit" color="initial">Item</Typography>
-                <Typography variant="inherit" color="initial">Price</Typography>
-                <Typography variant="inherit" color="initial">Total</Typography>
-            </Box>
+                <Typography variant="inherit" color="initial" sx={{pl:"20px"}}>Item</Typography>
+                <Typography variant="inherit" color="initial" sx={{pl:"70px"}} >Price</Typography>
+                <Typography variant="inherit" color="initial" sx={{pr:"30px"}}>Total</Typography>
+            </Box> )}
             {cartItems.length === 0 && <Typography variant='h4' sx={{textAlign:"center"}}>Your Cart is empty</Typography>}
-            <Box sx={{ backgroundColor: "grey"}}>
+            <Box>
                 {cartItems.map((item,index) => {
                     return (
                         <List>
-                            <ListItem sx={{ pr: "50px" }}>
-                                <img src={item.image} style={{ width: "120px",height:"90px" }} />
+                            <ListItem sx={{ pr: "50px",margin:"15px" }}>
+                                <img src={item.image} style={{ width: "120px",height:"90px"}} />
                                 <ListItemText primary={item.name} sx={{ pl: "5px", width: "90px" }} />
                                 <ListItemText primary={"£" + (item.quantity * item.price)} />
                                 {/* <UseNumberInputCompact quantity={item.quantity}/> */}
@@ -88,6 +89,7 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
                 })}
             </Box>
         </Box>
+        // {if no cart items remove column titles}
     )
 }
 
