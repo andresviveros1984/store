@@ -50,12 +50,11 @@ function App() {
   }, [])
 
  
-
-
   const handleFavourites = (x)=>{
-    const favourItems = favourites;
-    favourItems.push(x);
-    setFavourites(favourItems);
+    // const favourItems = favourites;
+    // favourItems.push(x);
+    console.log(x)
+    setFavourites([...favourites,x]);
     console.log(favourites)
 
   }

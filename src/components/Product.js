@@ -15,7 +15,7 @@ const Product = ({ product,handleFavourites,favourites }) => {
 
   
   useEffect(() => {
-
+    // handleFavourites();
   }, [favourites])
 
   return (
