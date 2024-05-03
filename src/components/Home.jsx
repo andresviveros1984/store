@@ -7,7 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Results from "./Results";
 import { useParams } from "react-router-dom";
 
-const Home = () => {
+const Home = ({handleFavourites, favourites}) => {
   const [results, setResults] = useState([]);
   const url = "https://dummyjson.com/products";
 
@@ -38,7 +38,7 @@ const Home = () => {
 
   return (
     <Container>
-      <Results results={results} />
+      <Results results={results} handleFavourites={handleFavourites} favourites={favourites}/>
     </Container>
   );
 };

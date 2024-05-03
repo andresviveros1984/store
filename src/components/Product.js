@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import {
   Card,
@@ -11,7 +11,13 @@ import {
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 
-const Product = ({ product }) => {
+const Product = ({ product,handleFavourites,favourites }) => {
+
+  
+  useEffect(() => {
+
+  }, [favourites])
+
   return (
     <Card sx={{ width: "15rem", height: "20rem", margin: 2 }}>
       <CardMedia
@@ -36,8 +42,13 @@ const Product = ({ product }) => {
         £{product.price}
         </Typography>
       </CardContent>
-      <IconButton aria-label="add to favorites">
-        <FavoriteIcon />
+      <IconButton aria-label="add to favorites" onClick={() => {
+        handleFavourites(product)
+        
+
+        
+        }}>
+        <FavoriteIcon sx={{color:favourites.findIndex(element => element.id === product.id) !== -1 && "red"}}/>
       </IconButton>
       <Link to={`/${product.category}/${product.id}`}>
         <Button size="small">See More</Button>

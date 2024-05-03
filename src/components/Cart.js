@@ -27,23 +27,23 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
         const filteredCartItems = cartItems.filter(cartProduct => cartProduct.productID !== item.productID)
         setCartItems(filteredCartItems);
         setCartCount(cartCount - item.quantity);
-        
+
     }
 
     const handleIncreaseQuantity = (i) => {
-        cartItems[i] = {...cartItems[i],quantity:cartItems[i].quantity+1}
+        cartItems[i] = { ...cartItems[i], quantity: cartItems[i].quantity + 1 }
         setCartItems(cartItems)
-        setCartCount(cartCount +=1);
-       
+        setCartCount(cartCount += 1);
+
         console.log(cartItems)
     }
 
     const handleDecreaseQuantity = (i) => {
-        cartItems[i] = {...cartItems[i],quantity:cartItems[i].quantity-1}
+        cartItems[i] = { ...cartItems[i], quantity: cartItems[i].quantity - 1 }
         setCartItems(cartItems)
-        setCartCount(cartCount -=1);
-        if(cartItems[i].quantity == 0){
-            cartItems.splice(i,1);
+        setCartCount(cartCount -= 1);
+        if (cartItems[i].quantity == 0) {
+            cartItems.splice(i, 1);
             setCartItems(cartItems)
         }
     }
@@ -52,30 +52,30 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
     return (
         <Box >
             {/* {console.log(cartItems)} */}
-            <Typography variant="h3" color="initial" sx={{textAlign:"center"}}>Your Cart</Typography>
-            {cartCount == 0 ? " " :(
-            <Box sx={{ display: "flex", justifyContent:"space-between", padding: "20px" }}>
-                <Typography variant="inherit" color="initial" sx={{pl:"20px"}}>Item</Typography>
-                <Typography variant="inherit" color="initial" sx={{pl:"70px"}} >Price</Typography>
-                <Typography variant="inherit" color="initial" sx={{pr:"30px"}}>Total</Typography>
-            </Box> )}
-            {cartItems.length === 0 && <Typography variant='h4' sx={{textAlign:"center"}}>Your Cart is empty</Typography>}
+            <Typography variant="h3" color="initial" sx={{ textAlign: "center" }}>Your Cart</Typography>
+            {cartCount == 0 ? " " : (
+                <Box sx={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
+                    <Typography variant="inherit" color="initial" sx={{ pl: "20px" }}>Item</Typography>
+                    <Typography variant="inherit" color="initial" sx={{ pl: "70px" }} >Price</Typography>
+                    <Typography variant="inherit" color="initial" sx={{ pr: "30px" }}>Total</Typography>
+                </Box>)}
+            {cartItems.length === 0 && <Typography variant='h4' sx={{ textAlign: "center" }}>Your Cart is empty</Typography>}
             <Box>
-                {cartItems.map((item,index) => {
+                {cartItems.map((item, index) => {
                     return (
                         <List>
-                            <ListItem sx={{ pr: "50px",margin:"15px" }}>
-                                <img src={item.image} style={{ width: "120px",height:"90px"}} />
+                            <ListItem sx={{ pr: "50px", margin: "15px" }}>
+                                <img src={item.image} style={{ width: "120px", height: "90px" }} />
                                 <ListItemText primary={item.name} sx={{ pl: "5px", width: "90px" }} />
                                 <ListItemText primary={"£" + (item.quantity * item.price)} />
                                 {/* <UseNumberInputCompact quantity={item.quantity}/> */}
-                                <Box sx={{display:"flex", height:"30px",alignItems:"center"}}>
+                                <Box sx={{ display: "flex", height: "30px", alignItems: "center" }}>
                                     <IconButton >
-                                        <AddCircleOutlineIcon onClick={()=>handleIncreaseQuantity(index)}/>
+                                        <AddCircleOutlineIcon onClick={() => handleIncreaseQuantity(index)} />
                                     </IconButton>
                                     <Typography variant='inherit'>{item.quantity}</Typography>
                                     <IconButton>
-                                        <RemoveCircleOutlineIcon onClick={()=>handleDecreaseQuantity(index)}/>
+                                        <RemoveCircleOutlineIcon onClick={() => handleDecreaseQuantity(index)} />
                                     </IconButton>
                                     {/* {create function one or two to handle increase and decrease
                                     ,once quantity is zero in ui, remove cart item
@@ -89,7 +89,6 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
                 })}
             </Box>
         </Box>
-        // {if no cart items remove column titles}
     )
 }
 

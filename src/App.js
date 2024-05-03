@@ -11,6 +11,7 @@ import Product from './components/Product';
 import ProductDetails from './components/ProductDetails';
 import TemporaryDrawer from './components/SideBar';
 import Authenticated from './components/Auth/Authenticated';
+import Favourites from './components/Favourites';
 
 // import { Category } from '@mui/icons-material';
 
@@ -35,10 +36,7 @@ function App() {
   const [cartCount, setCartCount] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [cartItem, setCartItem] = useState();
-
-  useEffect(() => {
-    getCategories();
-  }, [])
+  const [favourites,setFavourites]= useState([]);
 
   function getCategories() {
     fetch('https://dummyjson.com/products/categories')
@@ -46,12 +44,28 @@ function App() {
       .then(response => setCategories(response))
   }
 
+
+  useEffect(() => {
+    getCategories();
+  }, [])
+
+ 
+
+
+  const handleFavourites = (x)=>{
+    const favourItems = favourites;
+    favourItems.push(x);
+    setFavourites(favourItems);
+    console.log(favourites)
+
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <Header categories={categories} cartCount={cartCount} />
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Home handleFavourites={handleFavourites} favourites={favourites} />} />
           <Route path='/user' element={<Authenticated><User /></Authenticated>} />
           <Route path='/:id' element={<Home />} />
           <Route path='/:category/:id'
@@ -66,6 +80,7 @@ function App() {
               setCartCount={setCartCount}
               cartItems={cartItems}
               cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} />
+              <Route path='/favourites' element={<Favourites />}/>
         </Routes>
       </div>
     </ThemeProvider>

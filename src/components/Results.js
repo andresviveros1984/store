@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Product from './Product';
 
 
-const Results = ({results}) => {
+const Results = ({results, handleFavourites, favourites}) => {
     
 
     return (
@@ -13,7 +13,7 @@ const Results = ({results}) => {
             {results.products ? (
                 <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
                     {results.products.map((result) => {
-                        return <Product product={result} />;
+                        return <Product product={result} handleFavourites={handleFavourites} favourites={favourites}/>;
                     })}
                 </Box>
             ) : (
