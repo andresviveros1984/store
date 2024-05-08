@@ -53,15 +53,24 @@ function App() {
   const handleFavourites = (x)=>{
     // const favourItems = favourites;
     // favourItems.push(x);
-    console.log(x)
-    setFavourites([...favourites,x]);
-    console.log(favourites)
+   
+    
+    const found = favourites.findIndex(element => element.id === x.id)
+    if(found === -1){
+      setFavourites([...favourites,x]);
+    }else{
+      console.log(found)
+      favourites.splice(found,1)
+      console.log(favourites)
+      setFavourites(favourites)
+    }
 
   }
 
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
+        {console.log(favourites)}
         <Header categories={categories} cartCount={cartCount} />
         <Routes>
           <Route path='/' element={<Home handleFavourites={handleFavourites} favourites={favourites} />} />

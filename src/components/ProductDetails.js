@@ -67,6 +67,8 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
             category == "mens-watches"
             || category == "sunglasses"
             || category == "furniture"
+            || category == "home-decoration"
+            || category == "womens-dresses"
         ) {
             setCategoryType({ message: "Choose a Color", radios: ["Black", "Grey", "White"] })
         }
@@ -74,9 +76,12 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
             || category == "fragrances"
             || category == "tops"
             || category == "womens-bags"
+            || category == "groceries"
+            || category == "womens-shoes"
         ) {
             setCategoryType({ message: "Choose Size", radios: ["Small", "Medium", "Large"] })
         }
+        
         return categoryType;
     }
 
@@ -139,6 +144,7 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
                     <Grid item md={6}>
                         <Grid container>
                             <Grid item md={3}>
+                            {productDetail.images.length == 1 ? "" : (
                                 <Grid container mx={"10px"} my={"10px"}>
                                     {productDetail.images.map(image => {
                                         return (
@@ -147,7 +153,8 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
                                             </Grid>
                                         )
                                     })}
-                                </Grid>
+                                </Grid> )
+                                }
                             </Grid>
                             <Grid sx={{ boxShadow: 2 }} item md={9} my={"10px"}>
                                 <img src={mainImage} alt="" width={475} height={520} />
