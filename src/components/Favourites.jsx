@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import React from 'react';
 
-// {enable functionality so when user clicks on heart it should add to favourits array object}
-// "each object will be an array"
+//favourte items functionality similar to cart
+//favourite button will remove or add to favourites component
 
 const Favourites = () => {
     return (

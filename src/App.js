@@ -75,7 +75,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home handleFavourites={handleFavourites} favourites={favourites} />} />
           <Route path='/user' element={<Authenticated><User /></Authenticated>} />
-          <Route path='/:id' element={<Home />} />
+          <Route path='/:id' element={<Home handleFavourites={handleFavourites} favourites={favourites} />}  />
           <Route path='/:category/:id'
             element={<Authenticated><ProductDetails
               cartCount={cartCount} setCartCount={setCartCount}
@@ -88,7 +88,7 @@ function App() {
               setCartCount={setCartCount}
               cartItems={cartItems}
               cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} />
-              <Route path='/favourites' element={<Favourites />}/>
+          <Route path='/favourites' element={<Favourites />}/>
         </Routes>
       </div>
     </ThemeProvider>
