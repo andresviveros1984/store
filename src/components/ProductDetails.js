@@ -134,7 +134,7 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
     }, [productDetail.category]);
 
     return (
-        <Box>
+        <Box sx={{marginTop:"5px"}}>
             <AddedToCartDialog handleClickOpen={handleClickOpen} handleClose={handleClose} open={open} setOpen={setOpen} productDetail={productDetail}/>
             {!productDetail.images ? <Box sx={{ display: "flex", width: "100vw", height: "100vh", alignItems: "center", justifyContent: 'center' }}>
                 <CircularProgress />
@@ -149,7 +149,7 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
                                     {productDetail.images.map(image => {
                                         return (
                                             <Grid sx={{ boxShadow: 2 }} item md={10} onClick={() => setMainImage(image)}>
-                                                <img src={image} alt="" width={130} height={100} />
+                                                <img src={image} alt="" width={130} height={105} />
                                             </Grid>
                                         )
                                     })}
@@ -164,8 +164,8 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
                     < Grid item md={6}>
                         <Box sx={{ p: "16px" }}>
                             <Box sx={{ pb: "20px" }}>
-                                <Typography variant="h2" color="initial">{productDetail.brand} {productDetail.title}</Typography>
-                                <Typography variant="h3" color="initial">£{productDetail.price}</Typography>
+                                <Typography variant="h3" color="initial">{productDetail.brand} {productDetail.title}</Typography>
+                                <Typography variant="h4" color="initial">£{productDetail.price}</Typography>
                             </Box>
                             <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
 
