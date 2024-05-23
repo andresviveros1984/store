@@ -34,8 +34,6 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
         cartItems[i] = { ...cartItems[i], quantity: cartItems[i].quantity + 1 }
         setCartItems(cartItems)
         setCartCount(cartCount += 1);
-
-        console.log(cartItems)
     }
 
     const handleDecreaseQuantity = (i) => {
@@ -50,6 +48,7 @@ const Cart = ({ cartItems, setCartItems, setCartCount, cartCount }) => {
 
     return (
         <Box >
+            {console.log(cartItems)}
             <Typography variant="h3" color="initial" sx={{ textAlign: "center" }}>Your Cart</Typography>
             {cartCount == 0 ? " " : (
                 <Box sx={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>

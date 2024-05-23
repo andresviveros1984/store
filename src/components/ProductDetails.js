@@ -134,7 +134,7 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
     }, [productDetail.category]);
 
     return (
-        <Box sx={{marginTop:"5px"}}>
+        <Box sx={{marginTop:"20px"}}>
             <AddedToCartDialog handleClickOpen={handleClickOpen} handleClose={handleClose} open={open} setOpen={setOpen} productDetail={productDetail}/>
             {!productDetail.images ? <Box sx={{ display: "flex", width: "100vw", height: "100vh", alignItems: "center", justifyContent: 'center' }}>
                 <CircularProgress />
@@ -189,7 +189,7 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
                                     <Typography variant="h4" color="initial">Description</Typography>
                                     <Typography variant="inherit" color="initial">{productDetail.description}</Typography>
                                 </Box>
-                                <Box sx={{ pb: "36px" }}>
+                                <Box sx={{ pb: "36px",display:"flex",justifyContent:"center",mt:"20px"}}>
                                     <AddToCartBTN variant="outlined" size='large' color='primary' onClick={() => handleCart(productDetail)}>Add To Cart</AddToCartBTN>
                                 </Box>
                             </Box>
@@ -207,6 +207,6 @@ export default ProductDetails;
 
 
 const AddToCartBTN = styled(Button)({
-    backgroundColor: "primary"
-
+    backgroundColor: "primary",
+    width:"400px"
 })
