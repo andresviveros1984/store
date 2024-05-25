@@ -16,10 +16,11 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 
-export default function CartDialogue({ cartItems, setCartItems, setCartCount, cartCount }) {
+export default function CartDialogue({ cartItems, setCartItems, setCartCount, cartCount}) {
   const [fullWidth, setFullWidth] = React.useState("lg");
   const [maxWidth, setMaxWidth] = React.useState('lg');
   const [quantity, setQuantity] = useState(0);
+  const [open,setOpen] = useState(false);
   const handleRemoveFromItemCart = (item) => {
     // const remainingCartItems = [];
     // if (cartItems) {
@@ -54,12 +55,10 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
     }
   }
 
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  React.useEffect(()=>{
+    setOpen(true)
+  },[])
+ 
 
   const handleClose = () => {
     setOpen(false);
@@ -69,14 +68,14 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open alert dialog
-      </Button>
+      </Button> */}
       <Dialog
         fullWidth={fullWidth}
         maxWidth={maxWidth}
         open={open}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -85,7 +84,6 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
         </DialogTitle>
         <DialogContent>
           <Box >
-            {console.log(cartItems)}
             {cartCount == 0 ? " " : (
               <Box sx={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
                 <Typography variant="inherit" color="initial" sx={{ pl: "20px" }}>Item</Typography>
@@ -126,10 +124,13 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
           </DialogContentText> */}
 
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+        <Button onClick={handleClose} autoFocus>
+            Close
+          </Button> 
+          {/* <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
             Agree
-          </Button>
+          </Button> */}
         </DialogActions>
       </Dialog>
     </React.Fragment>

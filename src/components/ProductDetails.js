@@ -123,8 +123,6 @@ const ProductDetails = ({ setCartCount, cartCount, cartItems, setCartItems, setC
         } catch (error) {
             setError(error.toString());
         }
-
-
     }
 
     useEffect(() => {

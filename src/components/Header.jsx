@@ -19,7 +19,7 @@ import Badge from "@mui/material/Badge";
 
 
 
-const Header = ({ categories, getSingleCategory, cartCount }) => {
+const Header = ({ categories, getSingleCategory, cartCount,handleDialogOpen,handleDialogClose }) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
 
   const [state, setState] = React.useState({
@@ -76,7 +76,7 @@ const Header = ({ categories, getSingleCategory, cartCount }) => {
           {isAuthenticated && (
             <StyledLink  to={'/cart'}>
             <Badge badgeContent={cartCount} color="cartCol">
-              <ShoppingCartIcon />
+              <ShoppingCartIcon onClick={handleDialogOpen}/>
             </Badge>
             </StyledLink>
           )}
