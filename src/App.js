@@ -83,19 +83,19 @@ function App() {
               cartItems={cartItems} setCartItems={setCartItems}
               cartItem={cartItem} setCartItem={setCartItem} /></Authenticated>}
           />
-          {/* <Route path='/cart'
+          <Route path='/cart'
             element={<Authenticated><Cart
               cartCount={cartCount}
               setCartCount={setCartCount}
               cartItems={cartItems}
-              cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} /> */}
+              cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} />
             
-            <Route path='/cart'
+            {/* <Route path='/cart'
             element={<Authenticated><CartDialogue
               cartCount={cartCount}
               setCartCount={setCartCount}
               cartItems={cartItems}
-              cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} />
+              cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} /> */}
 
           <Route path='/favourites' element={<Favourites />}/>
         </Routes>

@@ -110,9 +110,6 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
                         <IconButton>
                           <RemoveCircleOutlineIcon onClick={() => handleDecreaseQuantity(index)} />
                         </IconButton>
-                        {/* {create function one or two to handle increase and decrease
-                                    ,once quantity is zero in ui, remove cart item
-                                    } */}
                       </Box>
                       <DeleteIcon onClick={() => handleRemoveFromItemCart(item)} />
                     </ListItem>
