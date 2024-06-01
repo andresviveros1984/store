@@ -91,6 +91,7 @@ function App() {
               setCartCount={setCartCount}
               cartItems={cartItems}
               cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} />
+              
 
           <Route path='/favourites' element={<Favourites />}/>
         </Routes>

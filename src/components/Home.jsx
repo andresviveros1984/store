@@ -6,6 +6,8 @@ import LinearProgress from "@mui/material/LinearProgress";
 import CircularProgress from "@mui/material/CircularProgress";
 import Results from "./Results";
 import { useParams } from "react-router-dom";
+import CartDialogue from "./CartDialogue";
+
 
 const Home = ({handleFavourites, favourites}) => {
   const [results, setResults] = useState([]);
@@ -39,6 +41,8 @@ const Home = ({handleFavourites, favourites}) => {
   return (
     <Container>
       <Results results={results} handleFavourites={handleFavourites} favourites={favourites}/>
+      {/* put cart modal here. */}
+      {/* <CartDialogue /> */}
     </Container>
   );
 };
