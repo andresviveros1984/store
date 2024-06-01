@@ -7,9 +7,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Results from "./Results";
 import { useParams } from "react-router-dom";
 import CartDialogue from "./CartDialogue";
+import Authenticated from '../components/Auth/Authenticated';
 
 
-const Home = ({handleFavourites, favourites}) => {
+const Home = ({handleFavourites, favourites,cartCount,setCartCount,cartItems,cartItem,setCartItems}) => {
   const [results, setResults] = useState([]);
   const url = "https://dummyjson.com/products";
 
@@ -41,8 +42,12 @@ const Home = ({handleFavourites, favourites}) => {
   return (
     <Container>
       <Results results={results} handleFavourites={handleFavourites} favourites={favourites}/>
-      {/* put cart modal here. */}
-      {/* <CartDialogue /> */}
+      {/* <CartDialogue 
+      cartCount={cartCount} 
+      setCartCount={setCartCount} 
+      cartItems={cartItems} cartItem={cartItem}
+       setCartItems={setCartItems}/> */}
+      
     </Container>
   );
 };

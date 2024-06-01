@@ -69,7 +69,13 @@ function App() {
       <div className="App">
         <Header categories={categories} cartCount={cartCount}/>
         <Routes>
-          <Route path='/' element={<Home handleFavourites={handleFavourites} favourites={favourites} />} />
+          <Route path='/' element={<Home handleFavourites={handleFavourites}
+           favourites={favourites}
+            cartCount={cartCount} 
+            setCartCount={setCartCount}
+            cartItems={cartItems}
+            cartItem={cartItem}
+            setCartItems={setCartItems}/>} />
           <Route path='/user' element={<Authenticated><User /></Authenticated>} />
           <Route path='/:id' element={<Home handleFavourites={handleFavourites} favourites={favourites} />}  />
           <Route path='/:category/:id'
@@ -78,19 +84,19 @@ function App() {
               cartItems={cartItems} setCartItems={setCartItems}
               cartItem={cartItem} setCartItem={setCartItem} /></Authenticated>}
           />
-          {/* <Route path='/cart'
+          <Route path='/cart'
             element={<Authenticated><Cart
               cartCount={cartCount}
               setCartCount={setCartCount}
               cartItems={cartItems}
-              cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} /> */}
+              cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} />
             
-            <Route path='/cart'
+            {/* <Route path='/cart'
             element={<Authenticated><CartDialogue
               cartCount={cartCount}
               setCartCount={setCartCount}
               cartItems={cartItems}
-              cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} />
+              cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} /> */}
               
 
           <Route path='/favourites' element={<Favourites />}/>
