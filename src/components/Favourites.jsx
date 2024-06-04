@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 //favourte items functionality similar to cart
@@ -7,7 +7,7 @@ import React from 'react';
 const Favourites = () => {
     return (
         <Box>
-            
+            <Typography variant="h1" color="initial">favourites</Typography>
         </Box>
     )
 }
