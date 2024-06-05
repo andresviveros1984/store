@@ -14,13 +14,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import UseNumberInputCompact from './UseNumberInputCompact';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-
+import useStore from '../store/store';
 
 export default function CartDialogue({ cartItems, setCartItems, setCartCount, cartCount}) {
   const [fullWidth, setFullWidth] = React.useState("lg");
   const [maxWidth, setMaxWidth] = React.useState('lg');
   const [quantity, setQuantity] = useState(0);
-  const [open,setOpen] = useState(false);
+  const openCartModal = useStore((state) => state.cartModalOpen);
+  const closeCartModal = useStore((state) => state.closeCartModal);
+
+
   const handleRemoveFromItemCart = (item) => {
     // const remainingCartItems = [];
     // if (cartItems) {
@@ -55,26 +58,17 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
     }
   }
 
-  React.useEffect(()=>{
-    setOpen(true)
-  },[])
- 
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-
-
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+  console.log(cartItems)
   return (
     <React.Fragment>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button> */}
       <Dialog
         fullWidth={fullWidth}
         maxWidth={maxWidth}
-        open={open}
+        open={openCartModal}
         // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -124,13 +118,9 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
           </DialogContentText> */}
 
         <DialogActions>
-        <Button onClick={handleClose} autoFocus>
+        <Button onClick={closeCartModal} autoFocus>
             Close
           </Button> 
-          {/* <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button> */}
         </DialogActions>
       </Dialog>
     </React.Fragment>

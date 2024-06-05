@@ -39,6 +39,10 @@ const Home = ({handleFavourites, favourites,cartCount,setCartCount,cartItems,car
       .then((response) => setResults(response));
   }
 
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
   return (
     <Container>
       <Results results={results} handleFavourites={handleFavourites} favourites={favourites}/>

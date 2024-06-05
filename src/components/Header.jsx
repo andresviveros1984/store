@@ -16,10 +16,10 @@ import { teal } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 import TemporaryDrawer from "./SideBar";
 import Badge from "@mui/material/Badge";
+import useStore from '../store/store';
 
 
-
-const Header = ({ categories, getSingleCategory, cartCount,handleDialogOpen,handleDialogClose }) => {
+const Header = ({ categories, cartCount,handleDialogOpen,handleDialogClose }) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
 
   const [state, setState] = React.useState({
@@ -27,7 +27,7 @@ const Header = ({ categories, getSingleCategory, cartCount,handleDialogOpen,hand
   });
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const openCartModal = useStore((state) => state.openCartModal);
   const navigate = useNavigate();
 
   const handleMenu = (event) => {
@@ -48,6 +48,8 @@ const Header = ({ categories, getSingleCategory, cartCount,handleDialogOpen,hand
 
     setState({ ...state, [anchor]: open });
   };
+
+ 
 
   return (
     <Box sx={{ flexGrow: 1}}>
@@ -76,7 +78,7 @@ const Header = ({ categories, getSingleCategory, cartCount,handleDialogOpen,hand
           {isAuthenticated && (
             <StyledLink  to={'/cart'}>
             <Badge badgeContent={cartCount} color="cartCol">
-              <ShoppingCartIcon onClick={handleDialogOpen}/>
+              <ShoppingCartIcon onClick={openCartModal} />
             </Badge>
             </StyledLink>
           )}
