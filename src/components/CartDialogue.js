@@ -14,13 +14,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import UseNumberInputCompact from './UseNumberInputCompact';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import useStore from '../store/store';
+
 
 
 export default function CartDialogue({ cartItems, setCartItems, setCartCount, cartCount}) {
   const [fullWidth, setFullWidth] = React.useState("lg");
   const [maxWidth, setMaxWidth] = React.useState('lg');
   const [quantity, setQuantity] = useState(0);
-  const [open,setOpen] = useState(false);
+
+  const openCartModal = useStore((state) => state.cartModalOpen)
+  const closeCartModal = useStore((state) => state.closeCartModal);
+
   const handleRemoveFromItemCart = (item) => {
     // const remainingCartItems = [];
     // if (cartItems) {
@@ -55,15 +60,6 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
     }
   }
 
-  React.useEffect(()=>{
-    setOpen(true)
-  },[])
- 
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
 
 
   return (
@@ -74,7 +70,7 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
       <Dialog
         fullWidth={fullWidth}
         maxWidth={maxWidth}
-        open={open}
+        open={openCartModal}
         // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -124,7 +120,7 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
           </DialogContentText> */}
 
         <DialogActions>
-        <Button onClick={handleClose} autoFocus>
+        <Button onClick={closeCartModal} autoFocus>
             Close
           </Button> 
           {/* <Button onClick={handleClose}>Disagree</Button>
