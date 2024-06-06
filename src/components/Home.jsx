@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Product from "./Product";
-import { Box, Container } from "@mui/material";
-import LinearProgress from "@mui/material/LinearProgress";
-import CircularProgress from "@mui/material/CircularProgress";
-import Results from "./Results";
-import { useParams } from "react-router-dom";
-import CartDialogue from "./CartDialogue";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Product from './Product';
+import { Box, Container } from '@mui/material';
+import LinearProgress from '@mui/material/LinearProgress';
+import CircularProgress from '@mui/material/CircularProgress';
+import Results from './Results';
+import { useParams } from 'react-router-dom';
+import CartDialogue from './CartDialogue';
 import Authenticated from '../components/Auth/Authenticated';
 
-
-const Home = ({handleFavourites, favourites,cartCount,setCartCount,cartItems,cartItem,setCartItems}) => {
+const Home = ({ handleFavourites, favourites, cartItem }) => {
   const [results, setResults] = useState([]);
-  const url = "https://dummyjson.com/products";
+  const url = 'https://dummyjson.com/products';
 
   // const [categories,setCategories] = useState([]);
   // const [singleCategory,setSingleCategory] = useState([]);
@@ -28,7 +27,7 @@ const Home = ({handleFavourites, favourites,cartCount,setCartCount,cartItems,car
   }, [id]);
 
   function fetchAllProducts() {
-    fetch("https://dummyjson.com/products")
+    fetch('https://dummyjson.com/products')
       .then((res) => res.json())
       .then((response) => setResults(response));
   }
@@ -41,13 +40,12 @@ const Home = ({handleFavourites, favourites,cartCount,setCartCount,cartItems,car
 
   return (
     <Container>
-      <Results results={results} handleFavourites={handleFavourites} favourites={favourites}/>
-      {/* <CartDialogue 
-      cartCount={cartCount} 
-      setCartCount={setCartCount} 
-      cartItems={cartItems} cartItem={cartItem}
-       setCartItems={setCartItems}/> */}
-      
+      <Results
+        results={results}
+        handleFavourites={handleFavourites}
+        favourites={favourites}
+      />
+      <CartDialogue cartItem={cartItem} />
     </Container>
   );
 };
