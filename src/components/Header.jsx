@@ -74,7 +74,7 @@ const Header = ({ categories, cartCount,handleDialogOpen,handleDialogClose }) =>
           >
             <StyledLink to={"/"}>Fabio's Store</StyledLink>
           </Typography>
-          {/* {conditional rendering} of icon if authenticated */}
+          
           {isAuthenticated && (
             <StyledLink  to={'/cart'}>
             <Badge badgeContent={cartCount} color="cartCol">
@@ -82,6 +82,8 @@ const Header = ({ categories, cartCount,handleDialogOpen,handleDialogClose }) =>
             </Badge>
             </StyledLink>
           )}
+
+    
           {isAuthenticated ? (
             <div>
               <IconButton

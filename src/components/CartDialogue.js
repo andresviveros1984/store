@@ -62,9 +62,10 @@ export default function CartDialogue({ cartItems, setCartItems, setCartCount, ca
   // const handleClose = () => {
   //   setOpen(false);
   // };
-  console.log(cartItems)
+  
   return (
     <React.Fragment>
+      {console.log(cartItems)}
       <Dialog
         fullWidth={fullWidth}
         maxWidth={maxWidth}

@@ -33,8 +33,6 @@ export default function TemporaryDrawer({ state, setState, toggleDrawer, categor
                   <OpenInBrowserIcon />
                 </ListItemIcon>
                 <ListItemText primary={text.name.toUpperCase()} />
-              {console.log(text)}
-              
               </ListItemButton>
             </ListItem>
           </Link>
