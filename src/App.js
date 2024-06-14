@@ -59,7 +59,7 @@ function App() {
       favourites.splice(found,1)
       setFavourites(favourites)
     }
-
+    console.log(favourites)
   }
 
  
@@ -99,7 +99,7 @@ function App() {
               cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} /> */}
               
 
-          <Route path='/favourites' element={<Favourites />}/>
+          <Route path='/favourites' element={<Favourites favourites={favourites}/>}/>
         </Routes>
       </div>
     </ThemeProvider>
