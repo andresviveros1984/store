@@ -11,7 +11,6 @@ import Product from './components/Product';
 import ProductDetails from './components/ProductDetails';
 import TemporaryDrawer from './components/SideBar';
 import Authenticated from './components/Auth/Authenticated';
-import Favourites from './components/Favourites';
 import CartDialogue from './components/CartDialogue';
 
 // import { Category } from '@mui/icons-material';
@@ -37,7 +36,7 @@ function App() {
   const [cartCount, setCartCount] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [cartItem, setCartItem] = useState();
-  const [favourites,setFavourites]= useState([]);
+  const [favourites, setFavourites] = useState([]);
 
   function getCategories() {
     fetch('https://dummyjson.com/products/categories')
@@ -50,34 +49,36 @@ function App() {
     getCategories();
   }, [])
 
- 
-  const handleFavourites = (x)=>{
+
+  const handleFavourites = (x) => {
+    console.log(x)
     const found = favourites.findIndex(element => element.id === x.id)
-    if(found === -1){
-      setFavourites([...favourites,x]);
-    }else{
-      favourites.splice(found,1)
+    console.log(found)
+    if (found === -1) {
+      setFavourites([...favourites, x]);
+    } else {
+      favourites.splice(found, 1)
       setFavourites(favourites)
     }
-    console.log(favourites)
+    // console.log(favourites)
   }
 
- 
+
 
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Header categories={categories} cartCount={cartCount}/>
+        <Header categories={categories} cartCount={cartCount} />
         <Routes>
           <Route path='/' element={<Home handleFavourites={handleFavourites}
-           favourites={favourites}
-            cartCount={cartCount} 
+            favourites={favourites}
+            cartCount={cartCount}
             setCartCount={setCartCount}
             cartItems={cartItems}
             cartItem={cartItem}
-            setCartItems={setCartItems}/>} />
+            setCartItems={setCartItems} />} />
           <Route path='/user' element={<Authenticated><User /></Authenticated>} />
-          <Route path='/:id' element={<Home handleFavourites={handleFavourites} favourites={favourites} />}  />
+          <Route path='/:id' element={<Home handleFavourites={handleFavourites} favourites={favourites} />} />
           <Route path='/:category/:id'
             element={<Authenticated><ProductDetails
               cartCount={cartCount} setCartCount={setCartCount}
@@ -90,16 +91,13 @@ function App() {
               setCartCount={setCartCount}
               cartItems={cartItems}
               cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} />
-            
-            {/* <Route path='/cart'
+
+          {/* <Route path='/cart'
             element={<Authenticated><CartDialogue
               cartCount={cartCount}
               setCartCount={setCartCount}
               cartItems={cartItems}
               cartItem={cartItem} setCartItems={setCartItems} /></Authenticated>} /> */}
-              
-
-          <Route path='/favourites' element={<Favourites favourites={favourites}/>}/>
         </Routes>
       </div>
     </ThemeProvider>

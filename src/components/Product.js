@@ -11,15 +11,12 @@ import {
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 
-const Product = ({ product,handleFavourites,favourites }) => {
-  
-  const [isClicked,setIsClicked] =useState(false);
+const Product = ({ product, handleFavourites, favourites }) => {
+  const [isClicked, setIsClicked] = useState(false);
 
-  useEffect(() => {
-    // handleFavourites();
-  }, [favourites,isClicked])
-
-  
+  // useEffect(() => {
+  //   // handleFavourites();
+  // }, [favourites,isClicked])
 
   return (
     <Card sx={{ width: "15rem", height: "20rem", margin: 2 }}>
@@ -42,16 +39,26 @@ const Product = ({ product,handleFavourites,favourites }) => {
           {product.title}
         </Typography>
         <Typography variant="inherit" color="initial">
-        £{product.price}
+          £{product.price}
         </Typography>
       </CardContent>
-      <IconButton aria-label="add to favorites" onClick={() => {
-        handleFavourites(product)
-        setIsClicked(!isClicked)
-        }}>
+      <IconButton
+        aria-label="add to favorites"
+        onClick={() => {
+          handleFavourites(product);
+          setIsClicked(!isClicked);
+        }}
+      >
         {/* <FavoriteIcon /> */}
-        <FavoriteIcon sx={{color:favourites.findIndex(element => element.id === product.id) !== -1 ? "red" : "grey"}}/>
-
+        <FavoriteIcon
+          sx={{
+            color:
+              favourites.findIndex((element) => element.id === product.id) !==
+              -1
+                ? "red"
+                : "grey",
+          }}
+        />
       </IconButton>
       <Link to={`/${product.category}/${product.id}`}>
         <Button size="small">See More</Button>
@@ -61,4 +68,3 @@ const Product = ({ product,handleFavourites,favourites }) => {
 };
 
 export default Product;
-
